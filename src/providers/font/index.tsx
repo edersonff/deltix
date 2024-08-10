@@ -1,6 +1,6 @@
 "use client";
 
-import { IBM_Plex_Serif, Inter, Play, Source_Code_Pro } from "next/font/google";
+import { Inter, Play, Source_Code_Pro, Silkscreen } from "next/font/google";
 import React from "react";
 
 const inter = Inter({
@@ -22,6 +22,12 @@ const sourceCodePro = Source_Code_Pro({
   variable: "--font-source_code_pro",
 });
 
+const silkscreen = Silkscreen({
+  weight: ["400"],
+  subsets: ["latin"],
+  variable: "--font-vt323",
+});
+
 export default function FontProvider({
   children,
 }: {
@@ -29,7 +35,7 @@ export default function FontProvider({
 }) {
   return (
     <body
-      className={`${inter.className} ${inter.variable} ${play.variable} ${sourceCodePro.variable}`}
+      className={`${inter.className} ${inter.variable} ${play.variable} ${sourceCodePro.variable} ${silkscreen.variable}`}
     >
       {children}
     </body>

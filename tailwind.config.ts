@@ -52,9 +52,10 @@ const config: Config = {
           "monospace",
         ],
         play: ["var(--font-play)", "Play", "sans-serif"],
+        vt323: ["var(--font-vt323)", "VT323", "monospace"],
       },
       colors: {
-        primary: "#0082B5",
+        primary: "#00A9EA",
         secondary: "#002B3C",
       },
       screens: {

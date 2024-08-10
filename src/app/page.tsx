@@ -9,12 +9,13 @@ import Noise from "@/components/noise";
 import { motion } from "framer-motion";
 import { categories } from "@/theme/categories";
 import LottieReact from "@/components/lottie";
-import Category from "@/components/Category";
+import Category from "@/components/category";
 import Draggable from "react-draggable"; // The default
 import { transition } from "@/theme/animation";
 import Laptop from "@/components/Laptop";
 import ProjectsSection from "@/sections/projects";
 import LocomotiveProvider from "@/providers/locomotive";
+import Header from "@/components/header";
 
 export default function Home() {
   return (
@@ -24,62 +25,9 @@ export default function Home() {
         <Noise
           data-scroll-section
           image="static-hero"
-          className="min-h-screen bg-gradient-to-b from-neutral-800 to-neutral-950"
+          className="min-h-screen bg-gradient-to-b from-neutral-800 to-neutral-950 border-b border-neutral-800"
         >
-          <header className="w-full py-10">
-            <div className="content flex items-center justify-between">
-              <Link href="/">
-                <Image
-                  src="/deltix/logo-blue.svg"
-                  alt="Deltix Logo"
-                  width={150}
-                  height={30}
-                  priority
-                />
-              </Link>
-
-              <nav className="flex items-center">
-                {pages.map(({ href, label }, index) => (
-                  <Link
-                    key={index}
-                    href={href}
-                    className="bg-gradient-to-b from-white to-neutral-500 hover:to-primary text-clip font-play font-bold uppercase text-sm text-center px-5 py-3 relative group"
-                  >
-                    <div className="unselectable undraggable absolute top-1/2 -translate-y-1/2 left-0 scale-y-0 translate-x-2 group-hover:x-[-scale-y-100,translate-x-0,delay-0] delay-100 transition-transform duration-300 ease-in-out">
-                      <Image
-                        src="/images/icons/selector.svg"
-                        alt="Arrow"
-                        width={10}
-                        height={10}
-                        priority
-                        className=""
-                      />
-                    </div>
-                    {label}
-                  </Link>
-                ))}
-              </nav>
-
-              <div className="flex items-center">
-                {social.map(({ href, icon, label, size }, index) => (
-                  <Link
-                    key={index}
-                    href={href}
-                    target="_blank"
-                    className="p-2.5 hover:opacity-75"
-                  >
-                    <Image
-                      src={`/images/social/${icon}`}
-                      alt={label}
-                      width={size}
-                      height={size}
-                      priority
-                    />
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </header>
+          <Header />
 
           <section className="mt-[6%] mb-[2%]">
             <div className="content flex items-center small:flex-col">
@@ -124,7 +72,7 @@ export default function Home() {
                   <Link
                     href="#"
                     role="button"
-                    className="flex-2 max-w-main-2 text-glass text-stone-900 font-bold uppercase text-sm text-center px-5 py-3 relative group rounded-full"
+                    className="flex-2 max-w-main-2 stroke-glass text-zinc-400 font-bold uppercase text-sm text-center px-5 py-3 relative group rounded-full"
                   >
                     Contact us
                   </Link>
@@ -135,7 +83,12 @@ export default function Home() {
           </section>
 
           <div className="absolute bottom-[5%] w-full overflow-hidden">
-            <div className="content flex flex-wrap justify-between">
+            <div
+              data-scroll
+              data-scroll-speed="-4"
+              data-scroll-position="top"
+              className="content flex flex-wrap justify-between"
+            >
               {categories.map((category, index) => (
                 <Category key={index} {...category} />
               ))}
@@ -146,12 +99,13 @@ export default function Home() {
         <Noise
           data-scroll-section
           image="static-hero"
-          className="min-h-screen flex bg-neutral-950"
+          className="min-h-screen flex bg-neutral-950 py-[4%]"
         >
           <div className="content relative flex-center flex-1">
             <div
               data-scroll
               data-scroll-speed="4"
+              data-scroll-call={() => console.log("Hello")}
               className="flex-center relative -z-10"
             >
               <Image
@@ -162,7 +116,7 @@ export default function Home() {
                 priority
                 className="unselectable undraggable inline-block relative z-0 "
               />
-              <div className="absolute min-w-[380px] h-[1px] -z-20 bg-transparent shadow-[0px_0px_600px_100px_rgb(7,214,242,0.75)] mix-blend-color-dodge" />
+              <div className="absolute min-w-[380px] h-[0px] -z-20 shadow-[0px_0px_600px_100px_rgb(7,214,242,0.75)] mix-blend-color-dodge" />
             </div>
 
             <Draggable>
@@ -217,7 +171,7 @@ export default function Home() {
               <div
                 data-scroll
                 data-scroll-speed="1"
-                className="absolute bottom-[10%] left-10 z-30 bg-black/40 backdrop-blur-xl rounded-xl"
+                className="absolute bottom-[0%] left-10 z-30 bg-black/40 backdrop-blur-xl rounded-xl"
               >
                 <Image
                   src="/images/terminals/terminal-3.svg"
@@ -271,12 +225,12 @@ export default function Home() {
           </div>
         </Noise>
 
-        <div
-          data-scroll-section
-          data-scroll-direction="horizontal"
-          className="min-h-screen flex bg-neutral-950"
-        >
+        <div data-scroll-section className="min-h-screen flex bg-neutral-900">
           <ProjectsSection />
+        </div>
+
+        <div data-scroll-section className="min-h-screen flex bg-neutral-900">
+          {/* <ProjectsSection /> */}
         </div>
       </main>
     </LocomotiveProvider>
