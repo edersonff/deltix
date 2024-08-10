@@ -16,7 +16,7 @@ export const pages = [
     href: "/products",
   },
   {
-    label: "Blog",
-    href: "/blog",
+    label: "Join",
+    href: "/join-us",
   },
 ];

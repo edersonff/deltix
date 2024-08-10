@@ -18,7 +18,7 @@ export default function Laptop() {
       <AnimatePresence>
         <div
           key={currentImage}
-          className="absolute top-0 left-[12%] z-20 transform -rotate-y-45 -rotate-x-[7deg] overflow-hidden"
+          className="absolute top-0 left-[12%] z-20 transform -rotate-y-45 -rotate-x-[7deg] drop-shadow-[10px_10px_15px_rgba(0,0,0,0.75)] overflow-hidden"
         >
           <motion.div
             initial={{ y: "100%" }}
@@ -43,7 +43,7 @@ export default function Laptop() {
               width={600}
               height={400}
               priority
-              className="unselectable undraggable rounded-lg drop-shadow-xl"
+              className="unselectable undraggable rounded-lg"
             />
           </motion.div>
         </div>
