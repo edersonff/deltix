@@ -1,34 +1,62 @@
 "use client";
 
+import { useLocomotiveStore } from "@/store/locomotive";
+import gsap from "gsap/all";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 import { usePathname } from "next/navigation";
-import { useRef } from "react";
-import { LocomotiveScrollProvider as RLSProvider } from "react-locomotive-scroll";
+import { useEffect, useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function LocomotiveProvider({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const setLocomotive = useLocomotiveStore((state) => state.setLocomotive);
+
   const pathname = usePathname();
   const containerRef = useRef(null);
 
-  return (
-    <RLSProvider
-      options={{
-        smooth: true,
-
-        // ... all available Locomotive Scroll instance options
-      }}
-      location={pathname}
-      onLocationChange={(scroll: any) =>
-        scroll.scrollTo(0, { duration: 0, disableLerp: true })
+  useEffect(() => {
+    async function startupLocomotive() {
+      if (!containerRef.current) {
+        return;
       }
-      containerRef={containerRef}
+      const Locomotive = (await import("locomotive-scroll")).default;
+
+      const locoScroll = new Locomotive({
+        el: containerRef.current,
+        smooth: true,
+        getDirection: true,
+      });
+
+      locoScroll.on("scroll", ScrollTrigger.update);
+
+      setLocomotive(locoScroll);
+    }
+
+    startupLocomotive();
+  }, [containerRef]);
+
+  return (
+    <
+      // options={{
+      //   smooth: true,
+      // }}
+      // location={pathname}
+      // onLocationChange={(scroll: any) =>
+      //   scroll.scrollTo(0, { duration: 0, disableLerp: true })
+      // }
+      // onUpdate={(scroll: any) => {
+      //   console.log(1);
+      // }}
+      // containerRef={containerRef}
     >
-      <div id="scroll-container" data-scroll-container ref={containerRef}>
+      <div data-scroll-container id="scroll-container" ref={containerRef}>
         {children}
       </div>
-    </RLSProvider>
+    </>
   );
 }
