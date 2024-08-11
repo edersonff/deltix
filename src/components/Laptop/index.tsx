@@ -14,7 +14,7 @@ export default function Laptop() {
   }, []);
 
   return (
-    <div className="flex-1 relative flex-center perspective-1600">
+    <div className="flex-1 relative flex-center perspective-[4800px]">
       <AnimatePresence>
         <div
           key={currentImage}
