@@ -16,7 +16,6 @@ import Laptop from "@/components/Laptop";
 import ProjectsSection from "@/sections/projects";
 import LocomotiveProvider from "@/providers/locomotive";
 import Header from "@/components/header";
-import ButtonOverlay from "@/components/button";
 
 export default function Home() {
   return (
@@ -68,7 +67,6 @@ export default function Home() {
                     role="button"
                     className="flex-3 overflow-hidden max-w-main-3 bg-gradient-to-b from-primary to-secondary text-white font-bold uppercase text-sm text-center px-5 py-3 relative group rounded-full"
                   >
-                    <ButtonOverlay />
                     Let&apos;s Code
                   </Link>
                   <Link
