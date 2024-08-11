@@ -16,12 +16,13 @@ import Laptop from "@/components/Laptop";
 import ProjectsSection from "@/sections/projects";
 import LocomotiveProvider from "@/providers/locomotive";
 import Header from "@/components/header";
+import ButtonOverlay from "@/components/button";
 
 export default function Home() {
   return (
     <LocomotiveProvider>
       <Loading isComponent={true} />
-      <main data-scroll-container>
+      <main>
         <Noise
           data-scroll-section
           image="static-hero"
@@ -65,8 +66,9 @@ export default function Home() {
                   <Link
                     href="#"
                     role="button"
-                    className="flex-3 max-w-main-3 bg-gradient-to-b from-primary to-secondary text-white font-bold uppercase text-sm text-center px-5 py-3 relative group rounded-full"
+                    className="flex-3 overflow-hidden max-w-main-3 bg-gradient-to-b from-primary to-secondary text-white font-bold uppercase text-sm text-center px-5 py-3 relative group rounded-full"
                   >
+                    <ButtonOverlay />
                     Let&apos;s Code
                   </Link>
                   <Link
@@ -111,10 +113,10 @@ export default function Home() {
               <Image
                 src="/images/texts/projects.svg"
                 alt="Projects"
-                width={700}
-                height={300}
+                width={1000}
+                height={500}
                 priority
-                className="unselectable undraggable inline-block relative z-0 "
+                className="unselectable undraggable inline-block relative opacity-60 z-0 "
               />
               <div className="absolute min-w-[380px] h-[0px] -z-20 shadow-[0px_0px_600px_100px_rgb(7,214,242,0.75)] mix-blend-color-dodge" />
             </div>
@@ -225,7 +227,7 @@ export default function Home() {
           </div>
         </Noise>
 
-        <div data-scroll-section className="min-h-screen flex bg-neutral-900">
+        <div data-scroll-section className="flex bg-neutral-800">
           <ProjectsSection />
         </div>
 

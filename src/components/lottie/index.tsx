@@ -15,8 +15,6 @@ export default function LottieReact({
 }: Partial<LottieComponentProps> & {
   animation: keyof typeof lotties;
 }) {
-  //
-
   return (
     <Lottie {...props} animationData={lotties[animation]}>
       {children}

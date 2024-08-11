@@ -30,7 +30,7 @@ export default function Loading({ isComponent }: { isComponent: boolean }) {
       }}
     >
       <Image
-        src="/deltix/logo.svg"
+        src="/deltix/logo-white-2.svg"
         alt="Deltix Logo"
         width={211}
         height={68}
