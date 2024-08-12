@@ -57,7 +57,7 @@ export default function Laptop() {
         priority
         className="unselectable undraggable relative z-10"
       />
-      <div className="absolute w-[1px] h-[1px] shadow-[0px_0px_700px_150px_#07D6F2] mix-blend-color-dodge" />
+      <div className="absolute w-[1px] h-[1px] shadow-[0px_0px_700px_150px_#07D6F2] small:shadow-[0px_0px_500px_100px_#07D6F2] mix-blend-color-dodge" />
     </div>
   );
 }

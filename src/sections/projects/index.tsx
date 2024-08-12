@@ -64,27 +64,22 @@ export default function ProjectsSection() {
   }, [locomotive]);
 
   return (
-    <div className="content flex-center flex-1" ref={trigger}>
+    <div
+      className={
+        "content flex-center flex-1 h-[calc(50vh*" + projects.length + ")]"
+      }
+      ref={trigger}
+    >
       <div>
         <div ref={container} className="flex ">
           {projects.map((project, index) => (
-            <>
-              <div key={index} className="flex-center flex-col w-[50vw]">
-                <div className="relative w-full h-[300px]"></div>
-                <div className="text-center">
-                  <h3 className="text-2xl font-bold">{project.title}</h3>
-                  <p>{project.description}</p>
-                </div>
+            <div key={index} className="flex-center flex-col w-[50vw]">
+              <div className="relative w-full h-[300px]"></div>
+              <div className="text-center">
+                <h3 className="text-2xl font-bold">{project.title}</h3>
+                <p>{project.description}</p>
               </div>
-
-              <div key={index} className="flex-center flex-col w-[50vw]">
-                <div className="relative w-full h-[300px]"></div>
-                <div className="text-center">
-                  <h3 className="text-2xl font-bold">{project.title}</h3>
-                  <p>{project.description}</p>
-                </div>
-              </div>
-            </>
+            </div>
           ))}
         </div>
       </div>

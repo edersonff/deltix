@@ -24,11 +24,11 @@ export default function JoinUs() {
               <div className="max-w-main-6">
                 <h1
                   id="test"
-                  className="text-8xl mb-3 font-source-code-pro font-extrabold text-white/80"
+                  className="text-8xl small:text-6xl mb-3 font-source-code-pro font-extrabold text-white/80"
                 >
                   Carrers
                 </h1>
-                <p className="text-neutral-400 text-sm leading-[200%]">
+                <p className="text-neutral-400 text-sm small:text-[10px] leading-[200%]">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -55,7 +55,7 @@ export default function JoinUs() {
           ></div>
         </section>
         <section className="py-[15%]" data-scroll-section>
-          <div className="flex gap-main items-center content text-secondary">
+          <div className="flex gap-main items-center small:flex-col content text-secondary">
             <div className="flex-1 relative flex gap-7 items-center">
               <div className="absolute z-20  transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
                 <div className="border border-primary p-4">
@@ -104,16 +104,16 @@ export default function JoinUs() {
                 </div>
               </div>
             </div>
-            <div className="flex-1">
-              <p className="text-2xl font-semibold mb-3">
+            <div className="flex-1 text-sm small:text-xs">
+              <p className="text-2xl small:text-lg font-semibold mb-3">
                 Welcome To <span className="text-primary">Deltix</span>{" "}
                 Solutions
               </p>
-              <h3 className="text-[40px] leading-[100%] font-bold font-play mb-4">
+              <h3 className="text-[40px] small:text-2xl leading-[100%] font-bold font-play mb-4">
                 Bringing People Together Through{" "}
                 <span className="text-primary">The Power Of Technology</span>
               </h3>
-              <p className="font-medium text-neutral-600 leading-[200%] text-sm mb-7">
+              <p className="font-medium text-neutral-600 leading-[200%]  mb-7">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -122,21 +122,21 @@ export default function JoinUs() {
 
               <div className="flex justify-between gap-x-main mb-5">
                 <div className="flex-1">
-                  <h4 className="font-extrabold text-[42px] mb-2">
+                  <h4 className="font-extrabold text-[42px] small:text-3xl mb-2">
                     <CountUp end={500} duration={5} />M
                     <span className="text-primary">+</span>
                   </h4>
-                  <p className="text-neutral-600 max-w-2/3 text-sm mb-4 leading-[200%]">
+                  <p className="text-neutral-600 max-w-2/3 mb-4 leading-[200%]">
                     Downloads, or 6% of the world’s population.
                   </p>
                   <hr className="border-primary w-[45%]" />
                 </div>
                 <div className="flex-1">
-                  <h4 className="font-extrabold text-[42px] mb-2">
+                  <h4 className="font-extrabold text-[42px] small:text-3xl mb-2">
                     <CountUp end={2} duration={5} />M
                     <span className="text-primary">+</span>
                   </h4>
-                  <p className="text-neutral-600 max-w-2/3 text-sm mb-4 leading-[200%]">
+                  <p className="text-neutral-600 max-w-2/3 mb-4 leading-[200%]">
                     Our softwares have over 20 million unique daily users.
                   </p>
                   <hr className="border-primary w-[45%]" />
@@ -145,21 +145,21 @@ export default function JoinUs() {
 
               <div className="flex justify-between gap-x-main">
                 <div className="flex-1">
-                  <h4 className="font-extrabold text-[42px] mb-2">
+                  <h4 className="font-extrabold text-[42px] small:text-3xl mb-2">
                     <CountUp end={52} duration={5} />
                     <span className="text-primary">+</span>
                   </h4>
-                  <p className="text-neutral-600 max-w-2/3 text-sm mb-4 leading-[200%]">
+                  <p className="text-neutral-600 max-w-2/3 mb-4 leading-[200%]">
                     Experts collaborating to blow your mind in one place.
                   </p>
                   <hr className="border-primary w-[45%]" />
                 </div>
                 <div className="flex-1">
-                  <h4 className="font-extrabold text-[42px] mb-2">
+                  <h4 className="font-extrabold text-[42px] small:text-3xl mb-2">
                     <CountUp end={2} duration={5} />K
                     <span className="text-primary">+</span>
                   </h4>
-                  <p className="text-neutral-600 max-w-2/3 text-sm mb-4 leading-[200%]">
+                  <p className="text-neutral-600 max-w-2/3 mb-4 leading-[200%]">
                     Our softwares have over 4K unique daily users.
                   </p>
                   <hr className="border-primary w-[45%]" />
@@ -170,7 +170,7 @@ export default function JoinUs() {
                 <Link
                   href="#"
                   role="button"
-                  className="max-w-main-3 bg-primary text-secondary text-sm text-center px-6 py-3 relative group rounded-md"
+                  className="max-w-main-3 bg-primary text-secondary text-center px-6 py-3 relative group rounded-md"
                 >
                   Explore Our Softwares
                 </Link>
@@ -179,8 +179,8 @@ export default function JoinUs() {
           </div>
         </section>
         <section data-scroll-section>
-          <div className="min-h-[80vh] flex">
-            <div className="relative overflow-hidden flex-1">
+          <div className="min-h-[80vh] flex small:flex-col">
+            <div className="relative overflow-hidden flex-1 min-h-96">
               <Image
                 src="/images/stock/about-1.jpg"
                 alt="About Deltix Solutions 1"
@@ -190,16 +190,16 @@ export default function JoinUs() {
                 data-scroll-speed="-4"
               />
             </div>
-            <div className="flex-1 flex-center text-center text-secondary">
-              <div className="px-[5%]">
-                <p className="text-2xl font-semibold mb-3">
+            <div className="flex-1 flex-center big:text-center text-secondary">
+              <div className="px-[5%] small:py-[15%]">
+                <p className="text-2xl small:text-lg font-semibold mb-3">
                   <span className="text-primary">Deltix</span> Solutions
                 </p>
-                <h3 className="text-[40px] leading-[100%] font-bold font-play mb-6">
+                <h3 className="text-[40px] small:text-2xl leading-[100%] font-bold font-play mb-6">
                   Bringing People Together Through{" "}
                   <span className="text-primary">The Power Of Technology</span>
                 </h3>
-                <p className="font-medium text-neutral-600 leading-[200%] text-sm mb-7 mx-auto max-w-[70%]">
+                <p className="font-medium text-neutral-600 leading-[200%] text-sm small:text-xs mb-7 mx-auto big:max-w-[70%]">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -209,8 +209,8 @@ export default function JoinUs() {
             </div>
           </div>
 
-          <div className="min-h-[80vh] flex flex-row-reverse">
-            <div className="relative overflow-hidden flex-1">
+          <div className="min-h-[80vh] flex flex-row-reverse small:flex-col">
+            <div className="relative overflow-hidden flex-1 min-h-96">
               <Image
                 src="/images/stock/about-2.jpg"
                 alt="About Deltix Solutions 1"
@@ -220,18 +220,18 @@ export default function JoinUs() {
                 data-scroll-speed="-4"
               />
             </div>
-            <div className="flex-1 flex-center text-center text-secondary">
-              <div className="px-[5%]">
-                <p className="text-2xl font-semibold mb-3">
+            <div className="flex-1 flex-center big:text-center text-secondary">
+              <div className="px-[5%] small:py-[15%]">
+                <p className="text-2xl small:text-lg font-semibold mb-3">
                   <span className="text-[#C7802E]">Deltix</span> Solutions
                 </p>
-                <h3 className="text-[40px] leading-[100%] font-bold font-play mb-6">
+                <h3 className="text-[40px] small:text-2xl font-bold font-play mb-6">
                   Bringing People Together Through{" "}
                   <span className="text-[#C7802E]">
                     The Power Of Technology
                   </span>
                 </h3>
-                <p className="font-medium text-neutral-600 leading-[200%] text-sm mb-7 mx-auto max-w-[70%]">
+                <p className="font-medium text-neutral-600 leading-[200%] text-sm small:text-xs mb-7 mx-auto big:max-w-[70%]">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -241,8 +241,8 @@ export default function JoinUs() {
             </div>
           </div>
 
-          <div className="min-h-[80vh] flex">
-            <div className="relative overflow-hidden flex-1">
+          <div className="min-h-[80vh] flex small:flex-col">
+            <div className="relative overflow-hidden flex-1 min-h-96">
               <Image
                 src="/images/stock/about-3.jpg"
                 alt="About Deltix Solutions 3"
@@ -252,18 +252,18 @@ export default function JoinUs() {
                 data-scroll-speed="-4"
               />
             </div>
-            <div className="flex-1 flex-center text-center text-secondary">
-              <div className="px-[5%]">
-                <p className="text-2xl font-semibold mb-3">
+            <div className="flex-1 flex-center big:text-center text-secondary">
+              <div className="px-[5%] small:py-[15%]">
+                <p className="text-2xl small:text-lg font-semibold mb-3">
                   <span className="text-[#FFDB63]">Deltix</span> Solutions
                 </p>
-                <h3 className="text-[40px] leading-[100%] font-bold font-play mb-6">
+                <h3 className="text-[40px] small:text-2xl font-bold font-play mb-6">
                   Bringing People Together Through{" "}
                   <span className="text-[#FFDB63]">
                     The Power Of Technology
                   </span>
                 </h3>
-                <p className="font-medium text-neutral-600 leading-[200%] text-sm mb-7 mx-auto max-w-[70%]">
+                <p className="font-medium text-neutral-600 leading-[200%] text-sm small:text-xs mb-7 mx-auto big:max-w-[70%]">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -280,12 +280,12 @@ export default function JoinUs() {
           </h2>
           <div className="content">
             <div className="flex flex-wrap justify-center gap-5">
-              {Array.from({ length: 9 }).map((_, index) => (
+              {Array.from({ length: 8 }).map((_, index) => (
                 <div
                   key={index}
-                  className="w-[32%] min-h-36 p-4 bg-white text-neutral-400 border border-gray-200 "
+                  className="flex-[calc(33.3333%-1rem)] max-w-[50%] min-h-36 p-4 bg-white text-neutral-400 border border-gray-200 "
                 >
-                  <div className="flex flex-col items-start justify-between">
+                  <div className="flex flex-col items-start h-full justify-between">
                     <div>
                       <Image
                         src="/deltix/logo.svg"
@@ -298,7 +298,10 @@ export default function JoinUs() {
                       <h3 className="font-light">Web Software Engineer</h3>
                     </div>
 
-                    <Link href="#" className="text-[10px] font-bold">
+                    <Link
+                      href="#"
+                      className="text-[10px] font-bold hover:text-primary"
+                    >
                       Apply Now
                     </Link>
                   </div>

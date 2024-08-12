@@ -30,9 +30,9 @@ export default function Home() {
           <Header />
 
           <section className="mt-[6%] mb-[2%]">
-            <div className="content flex items-center small:flex-col">
+            <div className="content flex items-center small:flex-col gap-main">
               <div className="flex-1">
-                <h2 className="font-source-code-pro text-8xl font-extrabold uppercase mb-5 text-neutral-900">
+                <h2 className="font-source-code-pro text-8xl small:text-6xl font-extrabold uppercase mb-5 text-neutral-900">
                   <span className="bg-gradient-to-b from-white to-neutral-500 text-clip">
                     WE MAKE
                   </span>
@@ -42,7 +42,7 @@ export default function Home() {
                     width={90}
                     height={90}
                     priority
-                    className="unselectable undraggable inline-block ml-4 -mt-4"
+                    className="unselectable undraggable inline-block ml-4 small:ml-2 -mt-4 transform small:scale-75"
                   />
                   <br />
                   <span className="text-glass text-clip-stroke">Softwares</span>
@@ -52,10 +52,10 @@ export default function Home() {
                     width={90}
                     height={90}
                     priority
-                    className="unselectable undraggable inline-block ml-0 -mt-4"
+                    className="unselectable undraggable inline-block ml-0 -mt-4 transform small:scale-75"
                   />
                 </h2>
-                <p className="text-xs font-medium text-neutral-400 leading-[250%] max-w-main-5 relative z-10">
+                <p className="text-xs small:text-[10px] font-medium text-neutral-400 leading-[250%] max-w-main-5 relative z-10">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                   Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -65,14 +65,14 @@ export default function Home() {
                   <Link
                     href="#"
                     role="button"
-                    className="flex-3 overflow-hidden max-w-main-3 bg-gradient-to-b from-primary to-secondary text-white font-bold uppercase text-sm text-center px-5 py-3 relative group rounded-full"
+                    className="flex-3 overflow-hidden max-w-main-3 bg-gradient-to-b from-primary to-secondary text-white font-bold uppercase text-sm small:text-xs text-center px-5 py-3 relative group rounded-full"
                   >
                     Let&apos;s Code
                   </Link>
                   <Link
                     href="#"
                     role="button"
-                    className="flex-2 max-w-main-2 stroke-glass text-zinc-400 font-bold uppercase text-sm text-center px-5 py-3 relative group rounded-full"
+                    className="flex-2 max-w-main-2 stroke-glass text-zinc-400 font-bold uppercase text-sm small:text-xs text-center px-5 py-3 relative group rounded-full"
                   >
                     Contact us
                   </Link>
@@ -82,7 +82,7 @@ export default function Home() {
             </div>
           </section>
 
-          <div className="absolute bottom-[5%] w-full overflow-hidden">
+          <div className="big:absolute bottom-[5%] small:mb-[5%] w-full overflow-hidden">
             <div
               data-scroll
               data-scroll-speed="-4"
@@ -123,7 +123,7 @@ export default function Home() {
               <div
                 data-scroll
                 data-scroll-speed="1"
-                className="absolute top-10 left-20 z-10 bg-black/40 backdrop-blur-xl rounded-xl"
+                className="absolute top-10 left-20 z-10 bg-black/40 backdrop-blur-xl rounded-xl transform small:scale-75"
               >
                 <Image
                   src="/images/terminals/terminal-2.svg"
@@ -150,7 +150,7 @@ export default function Home() {
               <div
                 data-scroll
                 data-scroll-speed="2"
-                className="absolute z-20 top-[15%] left-[25%] bg-black/40 backdrop-blur-xl rounded-xl"
+                className="absolute z-20 top-[15%] left-[25%] bg-black/40 backdrop-blur-xl rounded-xl transform small:scale-75"
               >
                 <Image
                   src="/images/terminals/terminal-1.svg"
@@ -171,7 +171,7 @@ export default function Home() {
               <div
                 data-scroll
                 data-scroll-speed="1"
-                className="absolute bottom-[0%] left-10 z-30 bg-black/40 backdrop-blur-xl rounded-xl"
+                className="absolute bottom-[0%] left-10 z-30 bg-black/40 backdrop-blur-xl rounded-xl transform small:scale-75"
               >
                 <Image
                   src="/images/terminals/terminal-3.svg"
@@ -206,7 +206,7 @@ export default function Home() {
               <div
                 data-scroll
                 data-scroll-speed="2"
-                className="absolute z-20 bottom-[15%] right-[0%] bg-black/40 backdrop-blur-xl rounded-xl"
+                className="absolute z-20 bottom-[15%] right-[0%] bg-black/40 backdrop-blur-xl rounded-xl transform small:scale-75"
               >
                 <Image
                   src="/images/terminals/terminal-1.svg"
