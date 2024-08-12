@@ -5,8 +5,8 @@ import FontProvider from "./font";
 import "../app/globals.css";
 import SwiperProvider from "./swiper";
 import ScrollProvider from "./scroll";
-import LocomotiveProvider from "./locomotive";
 import AnimatedCursor from "react-animated-cursor";
+import NavbarProvider from "./navbar";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -16,6 +16,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
           {/* <ScrollProvider> */}
           {children}
           {/* </ScrollProvider> */}
+
+          <NavbarProvider />
+
           <AnimatedCursor
             innerSize={4}
             outerSize={24}
