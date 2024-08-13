@@ -4,108 +4,53 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { BsInstagram, BsTwitter } from "react-icons/bs";
 import { FaFacebook } from "react-icons/fa6";
 import { FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
-import { AnimatePresence, useAnimate, useInView } from "framer-motion";
-import { motion } from "framer-motion";
-import { textAnim, transition } from "@/theme/animation";
-import Marker from "../marker";
 
 export default function Footer() {
-  const [isAnimating, setIsAnimating] = useState(false);
-  const parentRef = useRef<HTMLDivElement>(null);
-
   const year = new Date().getFullYear();
-
-  useEffect(() => {
-    async function animate() {
-      setIsAnimating(true);
-      await new Promise((resolve) => setTimeout(resolve, 4000));
-      setIsAnimating(false);
-
-      await new Promise((resolve) => setTimeout(resolve, 4000));
-      await animate();
-    }
-
-    animate();
-  }, []);
 
   return (
     <>
-      <section
-        className="overflow-hidden relative bg-fixed bg-[length:100%] bg-no-repeat bg-center big:hover:bg-[length:104%] small:bg-cover transition-all duration-1000"
-        style={{
-          backgroundImage: "url(/images/banners/team.png)",
-        }}
-      >
+      <div className="overflow-hidden py-[5%] flex-center relative bg-fixed bg-[length:100%] bg-no-repeat bg-center big:hover:bg-[length:104%] small:bg-cover transition-all duration-1000">
+        <Image
+          width={1920}
+          height={1080}
+          src="/images/stock/footer.jpg"
+          alt="Footer"
+          data-scroll
+          data-scroll-speed="-1"
+          data-scroll-position="bottom                                       "
+          className="absolute inset-0 w-full h-[50vh] top-0 object-cover"
+        />
         <Link href="#sobre" className="cursor-pointer group">
-          <motion.div
-            initial="hidden"
-            animate={isAnimating ? "visible" : "hidden"}
-            ref={parentRef}
-            className="absolute mix-blend-overlay -top-[10%] -left-[10%] flex justify-between z-10"
-          >
-            {Array.from({ length: 10 }).map((_, iCol) => (
-              <div
-                key={iCol}
-                className={"flex flex-col " + (iCol >= 5 ? "small:hidden" : "")}
-              >
-                {Array.from({ length: 20 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className={
-                      "overflow-hidden " + (i >= 10 ? "big:hidden" : "")
-                    }
-                  >
-                    <motion.div
-                      key={i}
-                      variants={textAnim}
-                      transition={{
-                        ...transition,
-                        delay: 0.1 * i + 0.1 * iCol,
-                      }}
-                    >
-                      <Image
-                        src="/images/seti/logo-white.svg"
-                        alt="Logo Seti"
-                        width={200}
-                        height={200}
-                        className="opacity-20"
-                      />
-                    </motion.div>
-                  </div>
-                ))}
+          <div className="absolute-full bg-primary/90 group-hover:bg-primary/70 transition-all " />
+          <div className="py-[5%] flex-center flex-col relative z-30">
+            <h3 className="font-play text-2xl mb-6">We build software</h3>
+            <button className="px-7 py-3 text-sm border border-white relative overflow-hidden">
+              HIRE US
+              <div className="absolute bg-white right-0 top-0 h-full w-0 flex-center transition-all ease-in-out duration-500 group-hover:w-full overflow-hidden">
+                <span className="text-primary whitespace-nowrap break-before-avoid font-semibold px-4">
+                  HIRE US
+                </span>
               </div>
-            ))}
-          </motion.div>
-          <div className="absolute-full bg-primary/80 group-hover:bg-primary/70 transition-all mix-blend-multiply" />
-          <div className="content relative z-10 flex-center py-24">
-            <div className="text-white max-w-main-9 px-10 py-10 text-center">
-              <h2 className="text-5xl font-ibm-plex-serif font-bold">
-                SOMOS A <Marker className="text-white">SETI</Marker> TECNOLOGIA
-              </h2>
-              <p className="mt-10 leading-7 text-sm">
-                Somos uma desenvolvedora de software com 20 anos de mercado,
-                mais de 100 colaboradores diretos e indiretos e, mais de 1500
-                clientes de diversos portes e segmentos, presente em todo
-                território nacional com soluções que estão entre as mais
-                completas e robustas do mercado.
-              </p>
-            </div>
+            </button>
           </div>
         </Link>
-      </section>
-      <footer className="content-container bg-dark bg-slate-950/90 text-white small:pb-10">
+      </div>
+      <footer className="content-container bg-gradient-to-b from-neutral-900 to-black text-white small:pb-10">
         <h2 className="hidden">Footer</h2>
-        <div className="mx-auto w-full content p-4 py-10 lg:py-8">
+        <div className="mx-auto w-full content px-24 p-4 py-10 lg:py-8">
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0 small:mb-10">
               <Link href="#" className="flex items-start gap-2 flex-col">
                 <Image
-                  src="/images/seti/logo.svg"
+                  src="/images/deltix/logo.svg"
                   alt="Logo"
-                  width={50}
-                  height={50}
+                  width={75}
+                  height={75}
                 />
-                <p className="font-semibold text-neutral-200">Seti TI</p>
+                <p className="font-semibold text-neutral-200">
+                  Deltix Software
+                </p>
               </Link>
             </div>
             <div className="grid small:-order-1 grid-cols-2 gap-14">
@@ -193,37 +138,14 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          <hr className="my-6 border-neutral-200 sm:mx-auto  lg:my-8" />
-          <div className="sm:flex sm:items-center sm:justify-between">
-            <p className="text-xs">
-              © {year !== 2024 ? year + "-" : null}
-              {year}{" "}
-              <Link
-                href="/"
-                className="text-neutral-200 hover:underline text-sm"
-              >
-                Ederson Franzen Fagundes
-              </Link>
-            </p>
-            <div className="flex mt-4 sm:justify-center sm:mt-0">
-              <SocialFooterItem
-                type="instagram"
-                href="https://instagram.com/edersonfff"
-              />
-              <SocialFooterItem
-                type="facebook"
-                href="https://facebook.com/ederson.edi"
-              />
-              <SocialFooterItem
-                type="whatsapp"
-                href="https://wa.me/47996556538"
-              />
-              <SocialFooterItem
-                type="linkedin"
-                href="https://linkedin.com/in/ederson-franzen-fagundes"
-              />
-            </div>
-          </div>
+          <hr className="my-6 border-neutral-700 sm:mx-auto  lg:my-8" />
+          <p className="text-xs text-center">
+            © {year !== 2024 ? year + "-" : null}
+            {year}{" "}
+            <Link href="/" className="text-neutral-200 hover:underline text-sm">
+              Deltix, All right reserved.
+            </Link>
+          </p>
         </div>
       </footer>
     </>
