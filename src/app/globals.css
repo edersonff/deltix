@@ -6,12 +6,13 @@
   --color-primary: #00a9ea;
 }
 
-*,
+body,
 html {
+  @apply h-screen w-screen overflow-hidden;
 }
 
 body {
-  @apply bg-black text-white;
+  @apply bg-neutral-900 text-white;
 }
 
 @layer components {
@@ -55,6 +56,11 @@ body {
     @apply w-full h-full fixed top-0 left-0;
   }
 
+  .vertical{
+    -webkit-writing-mode: vertical-lr;
+    -ms-writing-mode: vertical-lr;
+  }
+
   .text-glass {
     background-image: linear-gradient(
       135deg,
@@ -69,7 +75,6 @@ body {
     border-width: 1px;
     border-style: solid;
     border-image-slice: 1;
-    border-radius: 100%;
     border-image-source: linear-gradient(
       135deg,
       rgba(140, 140, 140, 1) 0%,
@@ -77,6 +82,41 @@ body {
       rgba(42, 42, 42, 1) 80%,
       rgba(140, 140, 140, 1) 100%
     );
+  }
+
+  .stroke-8-primary{
+    border: 8px solid transparent; 
+    background: conic-gradient(
+      from 180deg at 50% 50%,
+      rgba(0, 169, 234, 1) 0%,
+      rgba(0, 169, 234, 0.5) 25%,
+      rgba(0, 169, 234, 0) 50%,
+      rgba(0, 169, 234, 0) 100%
+    ) fixed;
+    background-size: 120% 120%;
+    background-position: 50% 50%;
+    -webkit-mask: 
+       linear-gradient(#fff 0 0) padding-box, 
+       linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor; 
+            mask-composite: exclude; 
+  }
+
+  .stroke-8-primary::after{
+    content: '';
+    @apply absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full rounded-full w-2 h-2 bg-primary;
+  }
+
+  .glass-box{
+    padding: 1px;
+    background-image: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 1) 0%,
+      rgba(61, 61, 61, 1) 20%,
+      rgba(61, 61, 61, 1) 80%,
+      rgba(255, 255, 255, 1) 100%
+    );
+
   }
 
   .text-balance {
