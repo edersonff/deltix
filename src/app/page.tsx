@@ -3,29 +3,51 @@
 import Image from "next/image";
 import Loading from "./loading";
 import Link from "next/link";
-import { pages } from "@/theme/navigation";
-import { social } from "@/theme/social";
 import Noise from "@/components/noise";
 import { motion } from "framer-motion";
 import { categories } from "@/theme/categories";
-import LottieReact from "@/components/lottie";
 import Category from "@/components/category";
-import Draggable from "react-draggable"; // The default
-import { transition } from "@/theme/animation";
+import Draggable from "react-draggable";
 import Laptop from "@/components/Laptop";
 import ProjectsSection from "@/sections/projects";
 import LocomotiveProvider from "@/providers/locomotive";
 import Header from "@/components/header";
+import GlitchBtn from "@/components/button";
+import { useProjectStore } from "@/store/project";
+import { projects } from "@/theme/projects";
+import Footer from "@/components/footer";
+import GraphSection from "@/sections/graph";
+import CommitsSections from "@/sections/commits";
 
 export default function Home() {
+  const currentProject = useProjectStore((state) => state.project);
+
   return (
     <LocomotiveProvider>
       <Loading isComponent={true} />
+
+      {projects.map((project, index) => (
+        <motion.div
+          key={index}
+          className="fixed top-0 left-0 w-[60vw] opacity-50 h-full"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: currentProject === index ? 1 : 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Image
+            src={"/images/projects/" + project.image}
+            alt={project.title}
+            layout="fill"
+            objectFit="cover"
+          />
+          <div className="absolute right-0 top-0 h-full w-full bg-gradient-to-l from-neutral-900 to-transparent"></div>
+        </motion.div>
+      ))}
       <main>
         <Noise
           data-scroll-section
           image="static-hero"
-          className="min-h-screen bg-gradient-to-b from-neutral-800 to-neutral-950 border-b border-neutral-800"
+          className="min-h-screen bg-gradient-to-b from-neutral-700 to-neutral-900 border-b border-neutral-800"
         >
           <Header />
 
@@ -62,20 +84,24 @@ export default function Home() {
                   laboris nisi ut
                 </p>
                 <div className="flex gap-main mt-28 relative z-10">
-                  <Link
-                    href="#"
-                    role="button"
-                    className="flex-3 overflow-hidden max-w-main-3 bg-gradient-to-b from-primary to-secondary text-white font-bold uppercase text-sm small:text-xs text-center px-5 py-3 relative group rounded-full"
-                  >
-                    Let&apos;s Code
-                  </Link>
-                  <Link
-                    href="#"
-                    role="button"
-                    className="flex-2 max-w-main-2 stroke-glass text-zinc-400 font-bold uppercase text-sm small:text-xs text-center px-5 py-3 relative group rounded-full"
-                  >
-                    Contact us
-                  </Link>
+                  <GlitchBtn>
+                    <Link
+                      href="#"
+                      role="button"
+                      className="flex-3 overflow-hidden max-w-main-3 bg-gradient-to-b from-primary to-secondary text-white font-bold uppercase text-sm small:text-xs text-center px-5 py-3 relative group rounded-full"
+                    >
+                      Let&apos;s Code
+                    </Link>
+                  </GlitchBtn>
+                  <GlitchBtn>
+                    <Link
+                      href="#"
+                      role="button"
+                      className="flex-2 max-w-main-2 stroke-glass text-zinc-400 font-bold uppercase text-sm small:text-xs text-center px-5 py-3 relative group rounded-full"
+                    >
+                      Contact us
+                    </Link>
+                  </GlitchBtn>
                 </div>
               </div>
               <Laptop />
@@ -105,7 +131,6 @@ export default function Home() {
             <div
               data-scroll
               data-scroll-speed="4"
-              data-scroll-call={() => console.log("Hello")}
               className="flex-center relative -z-10"
             >
               <Image
@@ -134,7 +159,7 @@ export default function Home() {
                   className="opacity-40 unselectable undraggable"
                 />
                 {/* prettier-ignore */}
-                <pre className="absolute top-[20%] left-1 z-10 text-[10px] font-source-code-pro leading-none font-extrabold text-primary">
+                <p className="absolute top-[20%] left-1 z-10 text-[10px] font-source-code-pro leading-none font-extrabold text-primary whitespace-pre">
         
         {"\n"} _   _      _ _         _    _            _     _ _ 
         {"\n"}| | | |    | | |       | |  | |          | |   | | |
@@ -142,7 +167,7 @@ export default function Home() {
         {"\n"}|  _  |/ _ \ | |/ _ \  | |/\| |/ _ \| &apos;__| |/ _` | |
         {"\n"}| | | |  __/ | | &#40;_&#41; | \  /\  / &#40;_&#41; | |  | | &#40;_| |_|
         {"\n"}\_| |_/\___|_|_|\___/   \/  \/ \___/|_|  |_|\__,_&#40;_&#41;
-        </pre>
+        </p>
               </div>
             </Draggable>
 
@@ -183,7 +208,7 @@ export default function Home() {
                 />
                 <div className="absolute top-[20%] left-1 z-10 text-primary text-[10px]">
                   {/* prettier-ignore */}
-                  <pre className="leading-none font-extrabold">
+                  <p className="leading-none font-extrabold whitespace-pre font-source-code-pro">
         
         {"\n"} /$$$$$$$  /$$$$$$$$ /$$      /$$             /$$     /$$      
         {"\n"}| $$__  $$|__  $$__/| $$$    /$$$            | $$    | $$      
@@ -193,7 +218,7 @@ export default function Home() {
         {"\n"}| $$  \ $$   | $$   | $$\  $ | $$ /$$__  $$  | $$ /$$| $$  | $$
         {"\n"}| $$  | $$   | $$   | $$ \/  | $$|  $$$$$$$  |  $$$$/| $$  | $$
         {"\n"}|__/  |__/   |__/   |__/     |__/ \_______/   \___/  |__/  |__/
-        </pre>
+        </p>
                   <p className="leading-[150%] text-sm font-source-code-pro w-full mt-4 pr-4">
                     Do math, machine learning, math optimization in real-time.
                     feed Products join about
@@ -225,13 +250,30 @@ export default function Home() {
           </div>
         </Noise>
 
-        <div data-scroll-section className="flex bg-neutral-800">
+        <section
+          data-scroll-section
+          className="flex relative z-50 overflow-hidden"
+        >
           <ProjectsSection />
-        </div>
+        </section>
 
-        <div data-scroll-section className="min-h-screen flex bg-neutral-900">
-          {/* <ProjectsSection /> */}
-        </div>
+        <section
+          data-scroll-section
+          className="min-h-screen bg-neutral-950 text-4xl"
+        >
+          <GraphSection />
+        </section>
+
+        <section
+          data-scroll-section
+          className="min-h-screen relative flex-center text-4xl"
+        >
+          <CommitsSections />
+        </section>
+
+        <section data-scroll-section>
+          <Footer />
+        </section>
       </main>
     </LocomotiveProvider>
   );
