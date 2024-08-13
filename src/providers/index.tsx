@@ -4,7 +4,6 @@ import React from "react";
 import FontProvider from "./font";
 import "../app/globals.css";
 import SwiperProvider from "./swiper";
-import ScrollProvider from "./scroll";
 import AnimatedCursor from "react-animated-cursor";
 import NavbarProvider from "./navbar";
 
@@ -13,9 +12,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     <html lang="pt-br">
       <FontProvider>
         <SwiperProvider>
-          {/* <ScrollProvider> */}
           {children}
-          {/* </ScrollProvider> */}
 
           <NavbarProvider />
 
