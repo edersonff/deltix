@@ -212,6 +212,7 @@ Read more >
  * public/images/posts/1brc-sm.png public/images/posts/ai-duck.svg public/images/posts/ai-map2.png public/images/posts/background -out.jpg public/images/posts/C2_0.svg public/images/posts/cf-logo.png public/images/posts/cf-logo-6.png public/images/posts/component.svg public/images/posts/dial.svg public/images/posts/dial0.svg public/images/posts/epic.png public/images/posts/esp_board.jpg public/images/posts/hiring-1.png public/images/posts/lat2.jpg public/images/posts/quanthub-outer.png public/images/posts/reinforcement-learning.png public/images/posts/spread-trader-outer.png public/images/posts/tb.svg public/images/posts/tb-ce4.svg public/images/posts/zed_bg.png
  */
 
+import { lotties } from "@/components/lottie/lotties";
 import { Category } from "../categories";
 
 export type Product = {
@@ -266,3 +267,19 @@ export const projects: Product[] = [
     image: "ai-map2.png",
   },
 ];
+
+// keyof typeof lotties
+export const categoryLotties:{
+  [key in Category]: keyof typeof lotties;
+} = {
+  news: "news",
+  engineering: "engineering",
+  trading: "trading",
+  ai: "iot",
+  events: "events",
+  algorithms: "algorithms",
+  iot: "iot",
+  "machine learning": "machineLearning",
+  math: "math",
+};
+  
