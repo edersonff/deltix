@@ -43,6 +43,7 @@ export default function Home() {
           <div className="absolute right-0 top-0 h-full w-full bg-gradient-to-l from-neutral-900 to-transparent"></div>
         </motion.div>
       ))}
+
       <main>
         <Noise
           data-scroll-section
@@ -160,14 +161,14 @@ export default function Home() {
                 />
                 {/* prettier-ignore */}
                 <p className="absolute top-[20%] left-1 z-10 text-[10px] font-source-code-pro leading-none font-extrabold text-primary whitespace-pre">
-        
-        {"\n"} _   _      _ _         _    _            _     _ _ 
-        {"\n"}| | | |    | | |       | |  | |          | |   | | |
-        {"\n"}| |_| | ___| | | ___   | |  | | ___  _ __| | __| | |
-        {"\n"}|  _  |/ _ \ | |/ _ \  | |/\| |/ _ \| &apos;__| |/ _` | |
-        {"\n"}| | | |  __/ | | &#40;_&#41; | \  /\  / &#40;_&#41; | |  | | &#40;_| |_|
-        {"\n"}\_| |_/\___|_|_|\___/   \/  \/ \___/|_|  |_|\__,_&#40;_&#41;
-        </p>
+    
+    {"\n"} _   _      _ _         _    _            _     _ _ 
+    {"\n"}| | | |    | | |       | |  | |          | |   | | |
+    {"\n"}| |_| | ___| | | ___   | |  | | ___  _ __| | __| | |
+    {"\n"}|  _  |/ _ \ | |/ _ \  | |/\| |/ _ \| &apos;__| |/ _` | |
+    {"\n"}| | | |  __/ | | &#40;_&#41; | \  /\  / &#40;_&#41; | |  | | &#40;_| |_|
+    {"\n"}\_| |_/\___|_|_|\___/   \/  \/ \___/|_|  |_|\__,_&#40;_&#41;
+    </p>
               </div>
             </Draggable>
 
@@ -209,16 +210,16 @@ export default function Home() {
                 <div className="absolute top-[20%] left-1 z-10 text-primary text-[10px]">
                   {/* prettier-ignore */}
                   <p className="leading-none font-extrabold whitespace-pre font-source-code-pro">
-        
-        {"\n"} /$$$$$$$  /$$$$$$$$ /$$      /$$             /$$     /$$      
-        {"\n"}| $$__  $$|__  $$__/| $$$    /$$$            | $$    | $$      
-        {"\n"}| $$  \ $$   | $$   | $$$$  /$$$$  /$$$$$$  /$$$$$$  | $$$$$$$ 
-        {"\n"}| $$$$$$$/   | $$   | $$ $$/$$ $$ |____  $$|_  $$_/  | $$__  $$
-        {"\n"}| $$__  $$   | $$   | $$  $$$| $$  /$$$$$$$  | $$    | $$  \ $$
-        {"\n"}| $$  \ $$   | $$   | $$\  $ | $$ /$$__  $$  | $$ /$$| $$  | $$
-        {"\n"}| $$  | $$   | $$   | $$ \/  | $$|  $$$$$$$  |  $$$$/| $$  | $$
-        {"\n"}|__/  |__/   |__/   |__/     |__/ \_______/   \___/  |__/  |__/
-        </p>
+    
+    {"\n"} /$$$$$$$  /$$$$$$$$ /$$      /$$             /$$     /$$      
+    {"\n"}| $$__  $$|__  $$__/| $$$    /$$$            | $$    | $$      
+    {"\n"}| $$  \ $$   | $$   | $$$$  /$$$$  /$$$$$$  /$$$$$$  | $$$$$$$ 
+    {"\n"}| $$$$$$$/   | $$   | $$ $$/$$ $$ |____  $$|_  $$_/  | $$__  $$
+    {"\n"}| $$__  $$   | $$   | $$  $$$| $$  /$$$$$$$  | $$    | $$  \ $$
+    {"\n"}| $$  \ $$   | $$   | $$\  $ | $$ /$$__  $$  | $$ /$$| $$  | $$
+    {"\n"}| $$  | $$   | $$   | $$ \/  | $$|  $$$$$$$  |  $$$$/| $$  | $$
+    {"\n"}|__/  |__/   |__/   |__/     |__/ \_______/   \___/  |__/  |__/
+    </p>
                   <p className="leading-[150%] text-sm font-source-code-pro w-full mt-4 pr-4">
                     Do math, machine learning, math optimization in real-time.
                     feed Products join about
@@ -257,10 +258,7 @@ export default function Home() {
           <ProjectsSection />
         </section>
 
-        <section
-          data-scroll-section
-          className="min-h-screen bg-neutral-950 text-4xl"
-        >
+        <section data-scroll-section className="bg-neutral-950">
           <GraphSection />
         </section>
 

@@ -48,6 +48,10 @@ body {
     @apply flex items-center justify-center;
   }
 
+  .absolute-center {
+    @apply absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2;
+  }
+
   .absolute-full {
     @apply w-full h-full absolute top-0 left-0;
   }
@@ -59,6 +63,19 @@ body {
   .vertical{
     -webkit-writing-mode: vertical-lr;
     -ms-writing-mode: vertical-lr;
+  }
+
+  .box-graph::after{
+    content: "";
+    @apply w-5 h-5 absolute bottom-2.5 left-full transform -translate-x-1/2 translate-y-full bg-primary/40;
+  }
+
+  .box-graph-30::after{
+    @apply rotate-30;
+  }
+
+  .box-graph--30::after{
+    @apply -rotate-30;
   }
 
   .text-glass {
@@ -84,14 +101,32 @@ body {
     );
   }
 
+  .stroke-8-glass{
+    border: 8px solid transparent; 
+    background: linear-gradient(
+      135deg,
+      rgba(120, 120, 120, 1) 0%,
+      rgba(120, 120, 120, 0.2) 21%,
+      rgba(120, 120, 120, 0.2) 83%,
+      rgba(120, 120, 120, 1) 100%
+    ) fixed;
+    background-size: 120% 120%;
+    background-position: 50% 50%;
+    -webkit-mask: 
+       linear-gradient(#fff 0 0) padding-box, 
+       linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor; 
+            mask-composite: exclude; 
+  }
+
   .stroke-8-primary{
     border: 8px solid transparent; 
     background: conic-gradient(
       from 180deg at 50% 50%,
       rgba(0, 169, 234, 1) 0%,
-      rgba(0, 169, 234, 0.5) 25%,
-      rgba(0, 169, 234, 0) 50%,
-      rgba(0, 169, 234, 0) 100%
+      rgba(0, 234, 108, 0.5) 12.5%,
+      rgba(0, 234, 108, 0) 25%,
+      rgba(0, 234, 108, 0) 100%
     ) fixed;
     background-size: 120% 120%;
     background-position: 50% 50%;
@@ -104,7 +139,7 @@ body {
 
   .stroke-8-primary::after{
     content: '';
-    @apply absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full rounded-full w-2 h-2 bg-primary;
+    @apply absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-full rounded-full w-2 h-2 bg-primary backdrop-blur-xl;
   }
 
   .glass-box{
