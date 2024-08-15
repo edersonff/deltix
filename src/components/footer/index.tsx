@@ -2,8 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { BsInstagram, BsTwitter } from "react-icons/bs";
-import { FaFacebook } from "react-icons/fa6";
-import { FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
+import { FaDiscord, FaFacebook } from "react-icons/fa6";
+import { FaLinkedinIn, FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
+import { RiTelegramLine } from "react-icons/ri";
+import { CiLinkedin } from "react-icons/ci";
+import { VscGithub } from "react-icons/vsc";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -19,7 +22,7 @@ export default function Footer() {
           data-scroll
           data-scroll-speed="-1"
           data-scroll-position="bottom                                       "
-          className="absolute inset-0 w-full h-[50vh] top-0 object-cover"
+          className="absolute inset-0 w-full h-[50vh] top-0 object-cover group-hover:scale-[1.05] transition-all duration-1000"
         />
         <Link href="#sobre" className="cursor-pointer group">
           <div className="absolute-full bg-primary/90 group-hover:bg-primary/70 transition-all " />
@@ -38,103 +41,154 @@ export default function Footer() {
       </div>
       <footer className="content-container bg-gradient-to-b from-neutral-900 to-black text-white small:pb-10">
         <h2 className="hidden">Footer</h2>
-        <div className="mx-auto w-full content px-24 p-4 py-10 lg:py-8">
+        <div className="mx-auto w-full content px-24 p-4 py-10 pt-16 lg:py-8">
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0 small:mb-10">
-              <Link href="#" className="flex items-start gap-2 flex-col">
+              <Link href="#" className="flex items-start gap-main flex-col">
                 <Image
-                  src="/images/deltix/logo.svg"
+                  src="/deltix/logo.svg"
                   alt="Logo"
-                  width={75}
+                  width={150}
                   height={75}
                 />
-                <p className="font-semibold text-neutral-200">
-                  Deltix Software
+                <p className="text-[10px] leading-[200%] text-gray-600 max-w-main-3">
+                  Deltix, Inc. is headquartered in Natick, MA, United States.
+                  Founded in 2005, and with 65 staff
                 </p>
               </Link>
             </div>
-            <div className="grid small:-order-1 grid-cols-2 gap-14">
-              <div>
-                <h3 className="mb-7 small:mb-4 text-sm font-semibold text-neutral-200 uppercase ">
-                  Links Úteis
-                </h3>
-                <ul className="text-neutral-100  font-medium">
-                  <li>
-                    <Link
-                      href="#sobre"
-                      className="hover:underline text-sm !text-neutral-100"
-                    >
-                      Sobre
-                    </Link>
-                  </li>
-                  <li className="my-5">
-                    <Link
-                      href="#servicos"
-                      className="hover:underline text-sm !text-neutral-100"
-                    >
-                      Serviços
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="#contato"
-                      className="hover:underline text-sm !text-neutral-100"
-                    >
-                      Contato
-                    </Link>
-                  </li>
-                  <li className="mt-5">
-                    <Link
-                      href="#social"
-                      className="hover:underline text-sm !text-neutral-100"
-                    >
-                      Social
-                    </Link>
-                  </li>
-                </ul>
+
+            <div className="flex gap-main">
+              <div className="min-w-main-2">
+                <div className="mb-6">
+                  <h3 className="mb-3 text-sm font-bold text-neutral-200">
+                    Products
+                  </h3>
+                  <ul className="text-neutral-100 flex flex-col gap-1.5">
+                    {["Web", "App", "Software", "Eccomerce"].map((item) => (
+                      <li key={item}>
+                        <Link
+                          href={`#${item.toLowerCase()}`}
+                          className="hover:underline text-sm !text-neutral-100"
+                        >
+                          {item}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="mb-6">
+                  <h3 className="mb-3 text-sm font-bold text-neutral-200">
+                    Services
+                  </h3>
+                  <ul className="text-neutral-100 flex flex-col gap-1.5">
+                    {["Design", "Development"].map((item) => (
+                      <li key={item}>
+                        <Link
+                          href={`#${item.toLowerCase()}`}
+                          className="hover:underline text-sm !text-neutral-100"
+                        >
+                          {item}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <div>
-                <h3 className="mb-7 small:mb-4 text-sm font-semibold text-neutral-200 uppercase ">
-                  Nossas Redes
-                </h3>
-                <ul className="font-medium">
-                  <li>
+
+              <div className="min-w-main-2">
+                <div className="mb-6">
+                  <h3 className="mb-3 text-sm font-bold text-neutral-200">
+                    Products
+                  </h3>
+                  <ul className="text-neutral-100 flex flex-col gap-1.5">
+                    {["Web", "App", "Software", "Eccomerce"].map((item) => (
+                      <li key={item}>
+                        <Link
+                          href={`#${item.toLowerCase()}`}
+                          className="hover:underline text-sm !text-neutral-100"
+                        >
+                          {item}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="mb-6">
+                  <h3 className="mb-3 text-sm font-bold text-neutral-200">
+                    Services
+                  </h3>
+                  <ul className="text-neutral-100 flex flex-col gap-1.5">
+                    {["Design", "Development"].map((item) => (
+                      <li key={item}>
+                        <Link
+                          href={`#${item.toLowerCase()}`}
+                          className="hover:underline text-sm !text-neutral-100"
+                        >
+                          {item}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div className="mb-6">
+                <h4 className="font-bold text-sm mb-1">Get in Touch</h4>
+
+                <div className="flex items-center">
+                  {[
+                    {
+                      icon: (
+                        <div className="p-[2px] pr-[3px] pt-[3px] rounded-full border">
+                          <FaTelegramPlane className="text-xs" />
+                        </div>
+                      ),
+                      href: "#",
+                    },
+                    {
+                      icon: <CiLinkedin className="text-2xl" />,
+                      href: "#",
+                    },
+                    {
+                      icon: (
+                        <div className="p-0.5 rounded-full border">
+                          <FaDiscord className="text-sm" />
+                        </div>
+                      ),
+                      href: "#",
+                    },
+                    {
+                      icon: <VscGithub className="text-[19px]" />,
+                      href: "#",
+                    },
+                  ].map((item, index) => (
                     <Link
-                      href="https://instagram.com/edersonfff"
+                      key={index}
+                      href={item.href}
                       target="_blank"
-                      className="hover:underline text-sm !text-neutral-100"
+                      className="text-neutral-100 hover:text-white hover:border-white hover:bg-primary/20 transition-all rounded-full p-1.5"
                     >
-                      Instagram
+                      {item.icon}
                     </Link>
-                  </li>
-                  <li className="my-5">
-                    <Link
-                      href="https://github.com/edersonff"
-                      target="_blank"
-                      className="hover:underline text-sm !text-neutral-100"
-                    >
-                      Github
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="https://wa.me/47996556538"
-                      target="_blank"
-                      className="hover:underline text-sm !text-neutral-100"
-                    >
-                      Whatsapp
-                    </Link>
-                  </li>
-                  <li className="mt-5">
-                    <Link
-                      href="https://linkedin.com/in/ederson-franzen-fagundes"
-                      target="_blank"
-                      className="hover:underline text-sm !text-neutral-100"
-                    >
-                      Linkedin
-                    </Link>
-                  </li>
-                </ul>
+                  ))}
+                </div>
+              </div>
+
+              <h3 className="font-bold text-sm mb-3">Subscribe</h3>
+              <div className="flex gap-2.5">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 px-2.5 py-2 border rounded-full border-neutral-700 text-neutral-800 text-xs"
+                />
+                <button className="px-4 py-2 text-xs font-bold rounded-full bg-primary text-white">
+                  Subscribe
+                </button>
               </div>
             </div>
           </div>
@@ -149,35 +203,5 @@ export default function Footer() {
         </div>
       </footer>
     </>
-  );
-}
-
-export function SocialFooterItem({
-  type,
-  href,
-}: {
-  type: "facebook" | "twitter" | "instagram" | "linkedin" | "whatsapp";
-  href: string;
-}) {
-  const Icon = useMemo(() => {
-    const icons = {
-      facebook: <FaFacebook />,
-      twitter: <BsTwitter />,
-      instagram: <BsInstagram />,
-      linkedin: <FaLinkedinIn />,
-      whatsapp: <FaWhatsapp />,
-    };
-    return icons[type];
-  }, [type]);
-
-  return (
-    <Link
-      target="_blank"
-      href={href}
-      className="text-neutral-100 hover:text-neutral-200  ms-5"
-    >
-      {Icon}
-      <span className="sr-only">{type} page</span>
-    </Link>
   );
 }
