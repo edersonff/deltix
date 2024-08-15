@@ -8,5 +8,8 @@ export default function GlitchBtn({ children }: { children: React.ReactNode }) {
 
   return React.cloneElement(children as React.ReactElement, {
     ref,
+    style: {
+      width: "100vw",
+    },
   });
 }
