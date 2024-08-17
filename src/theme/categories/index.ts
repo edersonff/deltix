@@ -4,7 +4,7 @@ export type Category =
   | "events"
   | "engineering"
   | "trading"
-  | "machineLearning"
+  | "machine learning"
   | "algorithms"
   | "math"
   | "news"

@@ -1,9 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { transition } from "@/theme/animation";
+import { useMouse } from "@uidotdev/usehooks";
+import { lerp } from "@/utils/math/lerp";
 
 export default function Laptop() {
+  const imagesRef = useRef<HTMLDivElement>(null);
+
+  const [mouse] = useMouse();
   const [currentImage, setCurrentImage] = useState(0);
 
   useEffect(() => {
@@ -13,10 +18,27 @@ export default function Laptop() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    function lerpMouse() {
+      if (!imagesRef.current) return;
+      const x = (mouse.x / window.innerWidth) * 100;
+      const y = (mouse.y / window.innerHeight) * 100;
+      imagesRef.current.style.transform = `rotateY(${lerp(
+        -45,
+        45,
+        x
+      )}deg) rotateX(${lerp(-7, 7, y)}deg)`;
+    }
+
+    window.addEventListener("mousemove", lerpMouse);
+    return () => window.removeEventListener("mousemove", lerpMouse);
+  }, []);
+
   return (
     <div className="flex-1 relative flex-center perspective-[4800px]">
       <AnimatePresence>
         <div
+          ref={imagesRef}
           key={currentImage}
           className="absolute top-0 left-[12%] z-20 transform -rotate-y-45 -rotate-x-[7deg] drop-shadow-[10px_10px_15px_rgba(0,0,0,0.75)] overflow-hidden"
         >
@@ -57,7 +79,7 @@ export default function Laptop() {
         priority
         className="unselectable undraggable relative z-10"
       />
-      <div className="absolute w-[1px] h-[1px] shadow-[0px_0px_700px_150px_#07D6F2] mix-blend-color-dodge" />
+      <div className="absolute w-[1px] h-[1px] shadow-[0px_0px_700px_150px_#07D6F2] small:shadow-[0px_0px_500px_100px_#07D6F2] mix-blend-color-dodge" />
     </div>
   );
 }

@@ -2,260 +2,206 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { BsInstagram, BsTwitter } from "react-icons/bs";
-import { FaFacebook } from "react-icons/fa6";
-import { FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
-import { AnimatePresence, useAnimate, useInView } from "framer-motion";
-import { motion } from "framer-motion";
-import { textAnim, transition } from "@/theme/animation";
-import Marker from "../marker";
+import { FaDiscord, FaFacebook } from "react-icons/fa6";
+import { FaLinkedinIn, FaTelegramPlane, FaWhatsapp } from "react-icons/fa";
+import { RiTelegramLine } from "react-icons/ri";
+import { CiLinkedin } from "react-icons/ci";
+import { VscGithub } from "react-icons/vsc";
 
 export default function Footer() {
-  const [isAnimating, setIsAnimating] = useState(false);
-  const parentRef = useRef<HTMLDivElement>(null);
-
   const year = new Date().getFullYear();
-
-  useEffect(() => {
-    async function animate() {
-      setIsAnimating(true);
-      await new Promise((resolve) => setTimeout(resolve, 4000));
-      setIsAnimating(false);
-
-      await new Promise((resolve) => setTimeout(resolve, 4000));
-      await animate();
-    }
-
-    animate();
-  }, []);
 
   return (
     <>
-      <section
-        className="overflow-hidden relative bg-fixed bg-[length:100%] bg-no-repeat bg-center big:hover:bg-[length:104%] small:bg-cover transition-all duration-1000"
-        style={{
-          backgroundImage: "url(/images/banners/team.png)",
-        }}
-      >
+      <div className="overflow-hidden py-[5%] flex-center relative bg-fixed bg-[length:100%] bg-no-repeat bg-center big:hover:bg-[length:104%] small:bg-cover transition-all duration-1000">
+        <Image
+          width={1920}
+          height={1080}
+          src="/images/stock/footer.jpg"
+          alt="Footer"
+          data-scroll
+          data-scroll-speed="-1"
+          data-scroll-position="bottom                                       "
+          className="absolute inset-0 w-full h-[50vh] top-0 object-cover group-hover:scale-[1.05] transition-all duration-1000"
+        />
         <Link href="#sobre" className="cursor-pointer group">
-          <motion.div
-            initial="hidden"
-            animate={isAnimating ? "visible" : "hidden"}
-            ref={parentRef}
-            className="absolute mix-blend-overlay -top-[10%] -left-[10%] flex justify-between z-10"
-          >
-            {Array.from({ length: 10 }).map((_, iCol) => (
-              <div
-                key={iCol}
-                className={"flex flex-col " + (iCol >= 5 ? "small:hidden" : "")}
-              >
-                {Array.from({ length: 20 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className={
-                      "overflow-hidden " + (i >= 10 ? "big:hidden" : "")
-                    }
-                  >
-                    <motion.div
-                      key={i}
-                      variants={textAnim}
-                      transition={{
-                        ...transition,
-                        delay: 0.1 * i + 0.1 * iCol,
-                      }}
-                    >
-                      <Image
-                        src="/images/seti/logo-white.svg"
-                        alt="Logo Seti"
-                        width={200}
-                        height={200}
-                        className="opacity-20"
-                      />
-                    </motion.div>
-                  </div>
-                ))}
+          <div className="absolute-full bg-primary/90 group-hover:bg-primary/70 transition-all " />
+          <div className="py-[5%] flex-center flex-col relative z-30">
+            <h3 className="font-play text-2xl mb-6">We build software</h3>
+            <button className="px-7 py-3 text-sm border border-white relative overflow-hidden">
+              HIRE US
+              <div className="absolute bg-white right-0 top-0 h-full w-0 flex-center transition-all ease-in-out duration-500 group-hover:w-full overflow-hidden">
+                <span className="text-primary whitespace-nowrap break-before-avoid font-semibold px-4">
+                  HIRE US
+                </span>
               </div>
-            ))}
-          </motion.div>
-          <div className="absolute-full bg-primary/80 group-hover:bg-primary/70 transition-all mix-blend-multiply" />
-          <div className="content relative z-10 flex-center py-24">
-            <div className="text-white max-w-main-9 px-10 py-10 text-center">
-              <h2 className="text-5xl font-ibm-plex-serif font-bold">
-                SOMOS A <Marker className="text-white">SETI</Marker> TECNOLOGIA
-              </h2>
-              <p className="mt-10 leading-7 text-sm">
-                Somos uma desenvolvedora de software com 20 anos de mercado,
-                mais de 100 colaboradores diretos e indiretos e, mais de 1500
-                clientes de diversos portes e segmentos, presente em todo
-                território nacional com soluções que estão entre as mais
-                completas e robustas do mercado.
-              </p>
-            </div>
+            </button>
           </div>
         </Link>
-      </section>
-      <footer className="content-container bg-dark bg-slate-950/90 text-white small:pb-10">
+      </div>
+      <footer className="content-container bg-gradient-to-b from-neutral-900 to-black text-white small:pb-10">
         <h2 className="hidden">Footer</h2>
-        <div className="mx-auto w-full content p-4 py-10 lg:py-8">
+        <div className="mx-auto w-full content px-24 p-4 py-10 pt-16 lg:py-8">
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0 small:mb-10">
-              <Link href="#" className="flex items-start gap-2 flex-col">
+              <Link href="#" className="flex items-start gap-main flex-col">
                 <Image
-                  src="/images/seti/logo.svg"
+                  src="/deltix/logo.svg"
                   alt="Logo"
-                  width={50}
-                  height={50}
+                  width={150}
+                  height={75}
                 />
-                <p className="font-semibold text-neutral-200">Seti TI</p>
+                <p className="text-[10px] leading-[200%] text-gray-600 max-w-main-3">
+                  Deltix, Inc. is headquartered in Natick, MA, United States.
+                  Founded in 2005, and with 65 staff
+                </p>
               </Link>
             </div>
-            <div className="grid small:-order-1 grid-cols-2 gap-14">
-              <div>
-                <h3 className="mb-7 small:mb-4 text-sm font-semibold text-neutral-200 uppercase ">
-                  Links Úteis
-                </h3>
-                <ul className="text-neutral-100  font-medium">
-                  <li>
-                    <Link
-                      href="#sobre"
-                      className="hover:underline text-sm !text-neutral-100"
-                    >
-                      Sobre
-                    </Link>
-                  </li>
-                  <li className="my-5">
-                    <Link
-                      href="#servicos"
-                      className="hover:underline text-sm !text-neutral-100"
-                    >
-                      Serviços
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="#contato"
-                      className="hover:underline text-sm !text-neutral-100"
-                    >
-                      Contato
-                    </Link>
-                  </li>
-                  <li className="mt-5">
-                    <Link
-                      href="#social"
-                      className="hover:underline text-sm !text-neutral-100"
-                    >
-                      Social
-                    </Link>
-                  </li>
-                </ul>
+
+            <div className="flex gap-main">
+              <div className="min-w-main-2">
+                <div className="mb-6">
+                  <h3 className="mb-3 text-sm font-bold text-neutral-200">
+                    Products
+                  </h3>
+                  <ul className="text-neutral-100 flex flex-col gap-1.5">
+                    {["Web", "App", "Software", "Eccomerce"].map((item) => (
+                      <li key={item}>
+                        <Link
+                          href={`#${item.toLowerCase()}`}
+                          className="hover:underline text-sm !text-neutral-100"
+                        >
+                          {item}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="mb-6">
+                  <h3 className="mb-3 text-sm font-bold text-neutral-200">
+                    Services
+                  </h3>
+                  <ul className="text-neutral-100 flex flex-col gap-1.5">
+                    {["Design", "Development"].map((item) => (
+                      <li key={item}>
+                        <Link
+                          href={`#${item.toLowerCase()}`}
+                          className="hover:underline text-sm !text-neutral-100"
+                        >
+                          {item}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <div>
-                <h3 className="mb-7 small:mb-4 text-sm font-semibold text-neutral-200 uppercase ">
-                  Nossas Redes
-                </h3>
-                <ul className="font-medium">
-                  <li>
+
+              <div className="min-w-main-2">
+                <div className="mb-6">
+                  <h3 className="mb-3 text-sm font-bold text-neutral-200">
+                    Products
+                  </h3>
+                  <ul className="text-neutral-100 flex flex-col gap-1.5">
+                    {["Web", "App", "Software", "Eccomerce"].map((item) => (
+                      <li key={item}>
+                        <Link
+                          href={`#${item.toLowerCase()}`}
+                          className="hover:underline text-sm !text-neutral-100"
+                        >
+                          {item}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="mb-6">
+                  <h3 className="mb-3 text-sm font-bold text-neutral-200">
+                    Services
+                  </h3>
+                  <ul className="text-neutral-100 flex flex-col gap-1.5">
+                    {["Design", "Development"].map((item) => (
+                      <li key={item}>
+                        <Link
+                          href={`#${item.toLowerCase()}`}
+                          className="hover:underline text-sm !text-neutral-100"
+                        >
+                          {item}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div className="mb-6">
+                <h4 className="font-bold text-sm mb-1">Get in Touch</h4>
+
+                <div className="flex items-center">
+                  {[
+                    {
+                      icon: (
+                        <div className="p-[2px] pr-[3px] pt-[3px] rounded-full border">
+                          <FaTelegramPlane className="text-xs" />
+                        </div>
+                      ),
+                      href: "#",
+                    },
+                    {
+                      icon: <CiLinkedin className="text-2xl" />,
+                      href: "#",
+                    },
+                    {
+                      icon: (
+                        <div className="p-0.5 rounded-full border">
+                          <FaDiscord className="text-sm" />
+                        </div>
+                      ),
+                      href: "#",
+                    },
+                    {
+                      icon: <VscGithub className="text-[19px]" />,
+                      href: "#",
+                    },
+                  ].map((item, index) => (
                     <Link
-                      href="https://instagram.com/edersonfff"
+                      key={index}
+                      href={item.href}
                       target="_blank"
-                      className="hover:underline text-sm !text-neutral-100"
+                      className="text-neutral-100 hover:text-white hover:border-white hover:bg-primary/20 transition-all rounded-full p-1.5"
                     >
-                      Instagram
+                      {item.icon}
                     </Link>
-                  </li>
-                  <li className="my-5">
-                    <Link
-                      href="https://github.com/edersonff"
-                      target="_blank"
-                      className="hover:underline text-sm !text-neutral-100"
-                    >
-                      Github
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="https://wa.me/47996556538"
-                      target="_blank"
-                      className="hover:underline text-sm !text-neutral-100"
-                    >
-                      Whatsapp
-                    </Link>
-                  </li>
-                  <li className="mt-5">
-                    <Link
-                      href="https://linkedin.com/in/ederson-franzen-fagundes"
-                      target="_blank"
-                      className="hover:underline text-sm !text-neutral-100"
-                    >
-                      Linkedin
-                    </Link>
-                  </li>
-                </ul>
+                  ))}
+                </div>
+              </div>
+
+              <h3 className="font-bold text-sm mb-3">Subscribe</h3>
+              <div className="flex gap-2.5">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="flex-1 px-2.5 py-2 border rounded-full border-neutral-700 text-neutral-800 text-xs"
+                />
+                <button className="px-4 py-2 text-xs font-bold rounded-full bg-primary text-white">
+                  Subscribe
+                </button>
               </div>
             </div>
           </div>
-          <hr className="my-6 border-neutral-200 sm:mx-auto  lg:my-8" />
-          <div className="sm:flex sm:items-center sm:justify-between">
-            <p className="text-xs">
-              © {year !== 2024 ? year + "-" : null}
-              {year}{" "}
-              <Link
-                href="/"
-                className="text-neutral-200 hover:underline text-sm"
-              >
-                Ederson Franzen Fagundes
-              </Link>
-            </p>
-            <div className="flex mt-4 sm:justify-center sm:mt-0">
-              <SocialFooterItem
-                type="instagram"
-                href="https://instagram.com/edersonfff"
-              />
-              <SocialFooterItem
-                type="facebook"
-                href="https://facebook.com/ederson.edi"
-              />
-              <SocialFooterItem
-                type="whatsapp"
-                href="https://wa.me/47996556538"
-              />
-              <SocialFooterItem
-                type="linkedin"
-                href="https://linkedin.com/in/ederson-franzen-fagundes"
-              />
-            </div>
-          </div>
+          <hr className="my-6 border-neutral-700 sm:mx-auto  lg:my-8" />
+          <p className="text-xs text-center">
+            © {year !== 2024 ? year + "-" : null}
+            {year}{" "}
+            <Link href="/" className="text-neutral-200 hover:underline text-sm">
+              Deltix, All right reserved.
+            </Link>
+          </p>
         </div>
       </footer>
     </>
-  );
-}
-
-export function SocialFooterItem({
-  type,
-  href,
-}: {
-  type: "facebook" | "twitter" | "instagram" | "linkedin" | "whatsapp";
-  href: string;
-}) {
-  const Icon = useMemo(() => {
-    const icons = {
-      facebook: <FaFacebook />,
-      twitter: <BsTwitter />,
-      instagram: <BsInstagram />,
-      linkedin: <FaLinkedinIn />,
-      whatsapp: <FaWhatsapp />,
-    };
-    return icons[type];
-  }, [type]);
-
-  return (
-    <Link
-      target="_blank"
-      href={href}
-      className="text-neutral-100 hover:text-neutral-200  ms-5"
-    >
-      {Icon}
-      <span className="sr-only">{type} page</span>
-    </Link>
   );
 }

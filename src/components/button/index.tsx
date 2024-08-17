@@ -1,7 +1,8 @@
-import { useMouse } from "@uidotdev/usehooks";
 import React from "react";
+import { useGlitch } from "react-powerglitch";
+import { useMouse } from "@uidotdev/usehooks";
 
-export default function ButtonOverlay() {
+export function ButtonOverlay() {
   const [{ x, y, elementX, elementY }, ref] = useMouse<HTMLDivElement>();
 
   return (
@@ -18,4 +19,17 @@ export default function ButtonOverlay() {
       )}
     </>
   );
+}
+
+export default function GlitchBtn({ children }: { children: React.ReactNode }) {
+  const { ref } = useGlitch({
+    playMode: "click",
+  });
+
+  return React.cloneElement(children as React.ReactElement, {
+    ref,
+    style: {
+      width: "100vw",
+    },
+  });
 }

@@ -4,8 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import Nav from "../nav";
+import { useNavbarStore } from "@/store/navbar";
+import { FaBars } from "react-icons/fa6";
 
 export default function Header({ style }: { style?: string }) {
+  const setNavbar = useNavbarStore((state) => state.setNavbar);
   return (
     <header className="w-full py-10">
       <div className="content flex items-center justify-between">
@@ -19,7 +22,7 @@ export default function Header({ style }: { style?: string }) {
           />
         </Link>
 
-        <nav className="flex items-center">
+        <nav className="flex items-center small:hidden">
           {pages.map((page, index) => (
             <Nav key={index} {...page} isFlat={style === "white"} />
           ))}
@@ -31,7 +34,7 @@ export default function Header({ style }: { style?: string }) {
               key={index}
               href={href}
               target="_blank"
-              className="p-2.5 hover:opacity-75"
+              className="p-2.5 small:p-1.5 hover:opacity-75"
             >
               <Image
                 src={
@@ -43,9 +46,18 @@ export default function Header({ style }: { style?: string }) {
                 width={size}
                 height={size}
                 priority
+                className="small:scale-75"
               />
             </Link>
           ))}
+        </div>
+
+        <div
+          className="big:hidden cursor-pointer p-2.5"
+          role="button"
+          onClick={() => setNavbar(true)}
+        >
+          <FaBars size={24} className="text-neutral-400 hover:opacity-75" />
         </div>
       </div>
     </header>
