@@ -15,61 +15,46 @@ import Image from "next/image";
 import GlitchBtn from "@/components/button";
 import { FiExternalLink } from "react-icons/fi";
 import LottieReact from "@/components/lottie";
+import { useScrollerProxy } from "@/utils/gsap";
 
 export default function ProjectsSection() {
   const [currentProject, setCurrentProject] = useProjectStore((state) => [
     state.project,
     state.setProject,
   ]);
-  const locomotive = useLocomotiveStore((state) => state.locomotive);
+
+  const [scrollerProxy, locomotive] = useScrollerProxy();
 
   const container = useRef<HTMLDivElement>(null);
   const trigger = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const scrollContainer = locomotive?.el;
-
-    if (!scrollContainer || !locomotive) {
+    if (!scrollerProxy || !locomotive) {
       return;
     }
 
-    ScrollTrigger.scrollerProxy(scrollContainer, {
-      scrollTop(value) {
-        const screenW = window.innerWidth;
+    const scrollContainer = locomotive.el;
 
-        const projectLength = projects.length;
-        const width = container.current?.offsetWidth || 1;
-        const xTranslate = -Number(
-          container.current?.style?.transform?.split("(")[1]?.split("px")[0]
-        );
+    scrollerProxy(() => {
+      const screenW = window.innerWidth;
 
-        const scrollWidth = xTranslate / (width / projectLength);
+      const projectLength = projects.length;
+      const width = container.current?.offsetWidth || 1;
+      const xTranslate = -Number(
+        container.current?.style?.transform?.split("(")[1]?.split("px")[0]
+      );
 
-        const scrollProject = Math.round(scrollWidth);
+      const scrollWidth = xTranslate / (width / projectLength);
 
-        if (scrollProject !== currentProject) {
-          if (scrollProject <= 0) {
-            setCurrentProject(-1);
-          } else {
-            setCurrentProject(scrollProject);
-          }
+      const scrollProject = Math.round(scrollWidth);
+
+      if (scrollProject !== currentProject) {
+        if (scrollProject <= 0) {
+          setCurrentProject(-1);
+        } else {
+          setCurrentProject(scrollProject);
         }
-        const val = arguments.length
-          ? locomotive.scrollTo(value || 0, { duration: 0, disableLerp: true })
-          : locomotive.scroll.instance.scroll.y;
-
-        return val as number;
-      },
-      getBoundingClientRect() {
-        return {
-          left: 0,
-          top: 0,
-          width: window.innerWidth,
-          height: window.innerHeight,
-        };
-      },
-
-      pinType: "transform",
+      }
     });
 
     const pin = gsap.to(container.current, {
@@ -107,7 +92,7 @@ export default function ProjectsSection() {
           <div className={"" + getLastStyle(index)} key={index}>
             <div
               key={index}
-              className="flex flex-col justify-between w-[50vw] max-w-[700px] min-h-[60vh] stroke-glass text-white/80 px-[5%] py-[6%] bg-black/30 backdrop-blur-2xl"
+              className="flex flex-col justify-between w-[50vw] small:w-[100vw] max-w-[700px] min-h-[60vh] stroke-glass text-white/80 px-[5%] py-[6%] bg-black/30 backdrop-blur-2xl"
             >
               <div>
                 <h3 className="text-5xl uppercase font-bold mb-4">
@@ -176,7 +161,6 @@ function ProjectCategory({ category }: { category: Category }) {
         lottieRef={ref}
         onComplete={() => ref.current?.stop()}
         animation={categoryLotties[category]}
-        color="#ffffff"
         className="w-6 h-6"
       />
       <span className="text-[10px] font-extrabold uppercase">{category}</span>

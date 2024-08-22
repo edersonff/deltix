@@ -1,4 +1,5 @@
 import { useLocomotiveStore } from "@/store/locomotive";
+import { useScrollerProxy } from "@/utils/gsap";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -7,7 +8,7 @@ import React, { HTMLProps, RefObject, useMemo, useRef } from "react";
 import { BiSolidUpArrow } from "react-icons/bi";
 
 export default function GraphSection() {
-  const locomotive = useLocomotiveStore((state) => state.locomotive);
+  const [scrollerProxy, locomotive] = useScrollerProxy();
 
   const donuts = useRef<HTMLDivElement>(null);
 
@@ -23,31 +24,13 @@ export default function GraphSection() {
   const trigger = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const scrollContainer = locomotive?.el;
-
-    if (!scrollContainer || !locomotive) {
+    if (!scrollerProxy || !locomotive) {
       return;
     }
 
-    ScrollTrigger.scrollerProxy(scrollContainer, {
-      scrollTop(value) {
-        const val = arguments.length
-          ? locomotive.scrollTo(value || 0, { duration: 0, disableLerp: true })
-          : locomotive.scroll.instance.scroll.y;
+    const scrollContainer = locomotive.el;
 
-        return val as number;
-      },
-      getBoundingClientRect() {
-        return {
-          left: 0,
-          top: 0,
-          width: window.innerWidth,
-          height: window.innerHeight,
-        };
-      },
-
-      pinType: "transform",
-    });
+    scrollerProxy();
 
     const pin = gsap.to(container.current, {
       translateX: () => -Number(container.current?.offsetWidth),
@@ -153,7 +136,7 @@ export default function GraphSection() {
     });
 
     ScrollTrigger.addEventListener("refresh", () => {
-      locomotive.update();
+      // locomotive.update();
     });
 
     ScrollTrigger.refresh();
@@ -164,7 +147,7 @@ export default function GraphSection() {
       donut2Animation.kill();
       donut3Animation.kill();
     };
-  }, [locomotive, locomotive]);
+  }, [locomotive, scrollerProxy]);
 
   return (
     <div ref={trigger} className="relative">
@@ -277,17 +260,32 @@ export default function GraphSection() {
           ref={graph3}
           className="absolute-full bottom-[10%] left-0 z-10"
         >
-          <ValueChanged className="bottom-[100] left-8" value={18.42} />
-          <ValueChanged className="bottom-[150] left-[150]" value={-10.25} />
-          <ValueChanged className="bottom-[115] left-[230]" value={7.01} />
-          <ValueChanged className="bottom-[175] left-[280]" value={-20.75} />
-          <ValueChanged className="bottom-[48] left-[420]" value={37.11} />
-          <ValueChanged className="bottom-[290] left-[770]" value={-8.09} />
-          <ValueChanged className="bottom-[200] left-[850]" value={12.92} />
-          <ValueChanged className="bottom-[335] left-[1020]" value={-26.54} />
-          <ValueChanged className="bottom-[150] left-[1270]" value={9.14} />
-          <ValueChanged className="bottom-[285] left-[1445]" value={-4.74} />
-          <ValueChanged className="bottom-[195] left-[1530]" value={64.74} />
+          <ValueChanged className="bottom-[100px] left-8" value={18.42} />
+          <ValueChanged
+            className="bottom-[150px] left-[150px]"
+            value={-10.25}
+          />
+          <ValueChanged className="bottom-[115px] left-[230px]" value={7.01} />
+          <ValueChanged
+            className="bottom-[175px] left-[280px]"
+            value={-20.75}
+          />
+          <ValueChanged className="bottom-[48px] left-[420px]" value={37.11} />
+          <ValueChanged className="bottom-[290px] left-[770px]" value={-8.09} />
+          <ValueChanged className="bottom-[200px] left-[850px]" value={12.92} />
+          <ValueChanged
+            className="bottom-[335px] left-[1020px]"
+            value={-26.54}
+          />
+          <ValueChanged className="bottom-[150px] left-[1270px]" value={9.14} />
+          <ValueChanged
+            className="bottom-[285px] left-[1445px]"
+            value={-4.74}
+          />
+          <ValueChanged
+            className="bottom-[195px] left-[1530px]"
+            value={64.74}
+          />
         </div>
 
         <ChartLines container={container} />
@@ -301,39 +299,48 @@ export function ChartLines({
 }: {
   container: RefObject<HTMLDivElement>;
 }) {
-  const locomotive = useLocomotiveStore((state) => state.locomotive);
-
+  const [scrollerProxy, locomotive] = useScrollerProxy();
   const charts = useRef<HTMLDivElement[]>([]);
 
-  // useGSAP(() => {
-  //   if (!locomotive || charts.current.length !== 126) {
-  //     return;
-  //   }
+  useGSAP(() => {
+    if (!scrollerProxy || !locomotive || charts.current.length !== 126) {
+      return;
+    }
 
-  //   const scrollContainer = locomotive.el;
+    scrollerProxy();
 
-  //   charts.current.forEach((chart) => {
-  //     gsap.to(chart, {
-  //       x: () => -Number(container.current?.offsetWidth),
-  //       ease: "none",
-  //       scrollTrigger: {
-  //         scroller: scrollContainer,
-  //         trigger: container.current,
-  //         start: "top top",
-  //         scrub: true,
-  //         end: () => "+=" + container.current?.offsetWidth,
-  //       },
-  //     });
-  //   });
+    let animations = [];
 
-  //   ScrollTrigger.addEventListener("refresh", () => {
-  //     locomotive.update();
-  //   });
+    for (const chart of charts.current) {
+      const x = chart.getBoundingClientRect().left;
+      const w = chart.offsetWidth;
 
-  //   ScrollTrigger.refresh();
-  // }, [charts]);
+      const anim = gsap.to(chart, {
+        height: Math.floor(Math.random() * 200) + 50,
+        opacity: Math.floor(Math.random() * 10) / 50 + 0.05,
+        ease: "none",
+        scrollTrigger: {
+          scroller: locomotive.el,
+          trigger: container.current,
+          start: "top top",
+          scrub: true,
+          end: () => "+=" + (x + w),
+        },
+      });
 
-  console.log(charts.current.length);
+      animations.push(anim);
+    }
+
+    ScrollTrigger.addEventListener("refresh", () => {
+      locomotive.update();
+    });
+
+    ScrollTrigger.refresh();
+
+    return () => {
+      animations.forEach((anim) => anim.kill());
+    };
+  }, [charts, scrollerProxy]);
 
   return (
     <div className="absolute z-50 left-0 bottom-0 flex items-end">
@@ -341,14 +348,14 @@ export function ChartLines({
         <div
           key={index}
           ref={(el) => {
-            if (el) {
+            if (el && !charts.current.includes(el)) {
               charts.current.push(el);
             }
           }}
           className="w-7 bg-gradient-to-b from-primary via-neutral-900 to-neutral-950"
           style={{
-            height: `${Math.floor(Math.random() * 200) + 50}px`,
-            opacity: Math.floor(Math.random() * 10) / 50 + 0.05,
+            height: 0,
+            opacity: 0,
           }}
         />
       ))}

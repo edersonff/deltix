@@ -1,4 +1,5 @@
 import { useLocomotiveStore } from "@/store/locomotive";
+import { useScrollerProxy } from "@/utils/gsap";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
@@ -6,7 +7,7 @@ import Image from "next/image";
 import React, { HTMLAttributes, RefObject, useMemo, useRef } from "react";
 
 export default function CommitsSections() {
-  const locomotive = useLocomotiveStore((state) => state.locomotive);
+  const [scrollerProxy, locomotive] = useScrollerProxy();
 
   const months = useRef<HTMLDivElement>(null);
 
@@ -14,31 +15,13 @@ export default function CommitsSections() {
   const trigger = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    const scrollContainer = locomotive?.el;
-
-    if (!scrollContainer || !locomotive) {
+    if (!locomotive || !scrollerProxy || !locomotive) {
       return;
     }
 
-    ScrollTrigger.scrollerProxy(scrollContainer, {
-      scrollTop(value) {
-        const val = arguments.length
-          ? locomotive.scrollTo(value || 0, { duration: 0, disableLerp: true })
-          : locomotive.scroll.instance.scroll.y;
+    const scrollContainer = locomotive.el;
 
-        return val as number;
-      },
-      getBoundingClientRect() {
-        return {
-          left: 0,
-          top: 0,
-          width: window.innerWidth,
-          height: window.innerHeight,
-        };
-      },
-
-      pinType: "transform",
-    });
+    scrollerProxy();
 
     const pin = gsap.to(container.current, {
       translateX: () => -Number(container.current?.offsetWidth),
@@ -68,7 +51,7 @@ export default function CommitsSections() {
     });
 
     ScrollTrigger.addEventListener("refresh", () => {
-      locomotive.update();
+      // locomotive.update();
     });
 
     ScrollTrigger.refresh();
@@ -80,17 +63,25 @@ export default function CommitsSections() {
 
   return (
     <div ref={trigger} className="relative w-full">
-      <div ref={container} className="min-h-screen relative w-full">
-        <Image
+      <div ref={container} className="min-h-screen relative min-w-[200vw]">
+        {/* <Image
           src="/images/frames/dots.svg"
           alt="Dots Frame"
           layout="fill"
           priority
           className="unselectable undraggable"
+        /> */}
+        <div
+          className="absolute-full -z-50 bg-gradient-radial from-black via-neutral-950 to-black flex items-center justify-center"
+          style={{
+            background: "url(/images/frames/dots.svg)",
+            backgroundRepeat: "repeat-x",
+            backgroundSize: "1200px 1200px",
+          }}
         />
 
         <div
-          className="w-full absolute top-[5%] left-0"
+          className="w-full absolute pl-[92px] top-[5%] left-0"
           ref={months}
           style={{
             maskImage:
@@ -98,7 +89,7 @@ export default function CommitsSections() {
             maskSize: "100% 100%",
           }}
         >
-          <div className="content w-full flex gap-[10%]">
+          <div className="w-full flex justify-between gap-[10%]">
             {[
               "Jan",
               "Feb",
@@ -123,43 +114,27 @@ export default function CommitsSections() {
           </div>
         </div>
 
-        <div className="absolute flex gap-4">
-          <div className="flex flex-col gap-4">
-            <Block color="green" container={container} />
-            <Block color="green-dark" container={container} />
-            <Block color="neutral" container={container} />
-            <Block color="green" container={container} />
-            <Block color="green-light" container={container} />
-            <Block color="neutral" container={container} />
-            <Block color="green-dark" container={container} />
-          </div>
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-b from-green-500/50 to-green-800/50 backdrop-blur-xl" />
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-b from-green-300/50 to-green-600/50 backdrop-blur-xl" />
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-b from-neutral-500/50 to-neutral-800/50 backdrop-blur-xl" />
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-b from-green-500/50 to-green-800/50 backdrop-blur-xl" />
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-b from-green-300/50 to-green-600/50 backdrop-blur-xl" />
-
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-b from-green-500/50 to-green-800/50 backdrop-blur-xl" />
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-b from-green-300/50 to-green-600/50 backdrop-blur-xl" />
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-b from-neutral-500/50 to-neutral-800/50 backdrop-blur-xl" />
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-b from-green-500/50 to-green-800/50 backdrop-blur-xl" />
-          <div className="w-10 h-10 rounded-lg bg-gradient-to-b from-green-300/50 to-green-600/50 backdrop-blur-xl" />
+        <div className="absolute w-full h-full pl-[87px] flex items-center gap-1.5">
+          {[...Array(72)].map((_, i) => (
+            <BlockColumn key={i} container={container} />
+          ))}
         </div>
       </div>
     </div>
   );
 }
 
+type Colors = "green" | "green-light" | "green-dark" | "neutral";
+
 function Block({
   color,
   className,
-  container,
+  innerRef,
+  ...props
 }: HTMLAttributes<HTMLDivElement> & {
-  color: "green" | "green-light" | "green-dark" | "neutral";
-  container: RefObject<HTMLDivElement>;
+  color: Colors;
+  innerRef?: (el: HTMLDivElement) => void;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-
   const bgStyle = useMemo(() => {
     switch (color) {
       case "green":
@@ -173,30 +148,112 @@ function Block({
     }
   }, [color]);
 
-  useGSAP(() => {
-    gsap.fromTo(
-      ref.current,
-      {
-        y: "-100%",
-        opacity: 0,
-      },
-      {
-        y: 0,
-        opacity: 1,
-        scrollTrigger: {
-          trigger: container.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true,
-        },
-      }
-    );
-  }, [ref]);
-
   return (
     <div
-      ref={ref}
-      className={`w-10 h-10 rounded-lg bg-gradient-to-b ${bgStyle} backdrop-blur-xl ${className}`}
+      ref={innerRef}
+      {...props}
+      className={`w-9 h-9 rounded-lg bg-gradient-to-b ${bgStyle} backdrop-blur-xl ${className}`}
     />
+  );
+}
+
+const getRandom = (min: number, max: number) =>
+  Math.floor(Math.random() * (max - min + 1) + min);
+
+const colors: (Colors | null)[] = [
+  "neutral",
+  "green",
+  "green-light",
+  "green-dark",
+  "neutral",
+];
+
+function BlockColumn({ container }: { container: RefObject<HTMLDivElement> }) {
+  const [scrollerProxy, locomotive] = useScrollerProxy();
+  const ref = useRef<HTMLDivElement[]>([]);
+  const columnRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    if (!locomotive || !scrollerProxy || ref.current.length !== 7) {
+      return;
+    }
+
+    const scrollContainer = locomotive.el;
+
+    scrollerProxy();
+
+    const anims: gsap.core.Tween[] = [];
+
+    for (const block of ref.current) {
+      const w = block.offsetWidth;
+      const x = block.offsetLeft;
+
+      const windowH = window.innerHeight;
+
+      const anim = gsap.to(block, {
+        translateY: () => 0,
+        ease: "none",
+        scrollTrigger: {
+          scroller: scrollContainer,
+          trigger: block,
+          start: "top top",
+          end: () => `+=${windowH}`,
+          scrub: true,
+        },
+      });
+
+      anims.push(anim);
+    }
+
+    ScrollTrigger.refresh();
+
+    return () => {
+      anims.forEach((anim) => anim.kill());
+    };
+  }, [locomotive, scrollerProxy, ref.current.length]);
+
+  return (
+    <div className="flex flex-col gap-1.5" ref={columnRef}>
+      {[
+        getRandom(0, 4),
+        getRandom(0, 4),
+        getRandom(0, 4),
+        getRandom(0, 4),
+        getRandom(0, 4),
+        getRandom(0, 4),
+        getRandom(0, 4),
+      ].map((color, i) => {
+        const col = colors[color];
+
+        if (col === null) {
+          return (
+            <div
+              key={Math.random()}
+              className="w-9 h-9 rounded-lg bg-gradient-to-b from-neutral-500/50 to-neutral-800/50 backdrop-blur-xl"
+            />
+          );
+        }
+
+        return (
+          <Block
+            key={i}
+            innerRef={(el) => {
+              if (el && !ref.current.includes(el)) {
+                ref.current.push(el);
+              }
+            }}
+            style={{
+              transform:
+                "translateY(-100vh) translateY(" +
+                (7 - i) * 9 +
+                "px) translateY(" +
+                Number(columnRef.current?.offsetLeft) * 0.35 +
+                "px)",
+            }}
+            color={col}
+          />
+        );
+      })}
+    </div>
   );
 }
