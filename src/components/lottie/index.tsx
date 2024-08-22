@@ -20,11 +20,11 @@ export default function LottieReact({
   const [anim, setAnim] = useState<Object | null>(lotties[animation]);
 
   useEffect(() => {
-    if (color) {
-      setAnim(flatten(color, lotties[animation]));
-    } else {
-      setAnim(lotties[animation]);
-    }
+    // if (color) {
+    //   setAnim(flatten(color, lotties[animation]));
+    // } else {
+    setAnim(lotties[animation]);
+    // }
   }, []);
 
   return (
