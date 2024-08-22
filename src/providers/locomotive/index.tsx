@@ -30,6 +30,13 @@ export default function LocomotiveProvider({
         el: containerRef.current,
         smooth: true,
         getDirection: true,
+        tablet: {
+          breakpoint: 1024,
+          smooth: true,
+        },
+        smartphone: {
+          smooth: true,
+        },
       });
 
       locoScroll.on("scroll", ScrollTrigger.update);

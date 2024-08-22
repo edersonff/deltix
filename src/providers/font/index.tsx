@@ -4,7 +4,7 @@ import { Inter, Play, Source_Code_Pro, Silkscreen } from "next/font/google";
 import React from "react";
 
 const inter = Inter({
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["100", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
   variable: "--font-inter",
 });
