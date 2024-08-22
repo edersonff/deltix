@@ -21,8 +21,8 @@ export default function Footer() {
           alt="Footer"
           data-scroll
           data-scroll-speed="-1"
-          data-scroll-position="bottom                                       "
-          className="absolute inset-0 w-full h-[50vh] top-0 object-cover group-hover:scale-[1.05] transition-all duration-1000"
+          data-scroll-position="bottom"
+          className="absolute inset-0 w-full h-[50vh] top-0 object-cover group-hover:scale-[1.05]"
         />
         <Link href="#sobre" className="cursor-pointer group">
           <div className="absolute-full bg-primary/90 group-hover:bg-primary/70 transition-all " />
@@ -39,7 +39,7 @@ export default function Footer() {
           </div>
         </Link>
       </div>
-      <footer className="content-container bg-gradient-to-b from-neutral-900 to-black text-white small:pb-10">
+      <footer className="content-container bg-gradient-to-b from-black/0 to-black text-white small:pb-10">
         <h2 className="hidden">Footer</h2>
         <div className="mx-auto w-full content px-24 p-4 py-10 pt-16 lg:py-8">
           <div className="md:flex md:justify-between">
