@@ -5,11 +5,11 @@ export const pages = [
   },
   {
     label: "About Us",
-    href: "/about-us",
+    href: "/join-us",
   },
   {
     label: "Services",
-    href: "/services",
+    href: "/join-us",
   },
   {
     label: "Products",
