@@ -46,13 +46,25 @@ export default function JoinUs() {
             className="absolute-full object-cover -z-20 object-[0px,-30] "
             src="/videos/join-us.mp4"
           />
+        </section>
+        <section data-scroll-section className="relative w-full">
           <div
-            className="absolute bottom-0 w-full h-10"
-            style={{
-              background:
-                "url(/images/illustrations/fade.svg) center top repeat",
-            }}
-          ></div>
+            data-scroll
+            data-scroll-direction="horizontal"
+            data-scroll-speed="6"
+            className="flex opacity-50"
+          >
+            <h2
+              className="text-[200px] small:text-[150px] whitespace-nowrap font-source-code-pro leading-[100%] text-stroke font-extrabold uppercase text-black/5"
+              style={{
+                WebkitTextStroke: "2px #000",
+              }}
+            >
+              Softwares apps websites design
+            </h2>
+          </div>
+          {/* <div className="absolute top-0 left-0 w-full h-full flex  flex-col justify-between overflow-hidden opacity-50">
+          </div> */}
         </section>
         <section className="py-[15%]" data-scroll-section>
           <div className="flex gap-main items-center small:flex-col content text-secondary">
