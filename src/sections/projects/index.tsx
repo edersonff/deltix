@@ -16,6 +16,7 @@ import GlitchBtn from "@/components/button";
 import { FiExternalLink } from "react-icons/fi";
 import LottieReact from "@/components/lottie";
 import { useScrollerProxy } from "@/utils/gsap";
+import { FaChevronRight } from "react-icons/fa6";
 
 export default function ProjectsSection() {
   const [currentProject, setCurrentProject] = useProjectStore((state) => [
@@ -32,12 +33,11 @@ export default function ProjectsSection() {
     if (!scrollerProxy || !locomotive) {
       return;
     }
+    console.log(1);
 
     const scrollContainer = locomotive.el;
 
     scrollerProxy(() => {
-      const screenW = window.innerWidth;
-
       const projectLength = projects.length;
       const width = container.current?.offsetWidth || 1;
       const xTranslate = -Number(
@@ -50,7 +50,7 @@ export default function ProjectsSection() {
 
       if (scrollProject !== currentProject) {
         if (scrollProject <= 0) {
-          setCurrentProject(-1);
+          setCurrentProject(0);
         } else {
           setCurrentProject(scrollProject);
         }
@@ -75,6 +75,10 @@ export default function ProjectsSection() {
     // });
 
     ScrollTrigger.refresh();
+
+    return () => {
+      pin.kill();
+    };
   }, [locomotive]);
 
   const getLastStyle = useCallback((index: number) => {
@@ -86,7 +90,7 @@ export default function ProjectsSection() {
   }, []);
 
   return (
-    <div className="content" ref={trigger}>
+    <div className="pl-[calc(16.6665%-1rem)]" ref={trigger}>
       <div ref={container} className="flex py-[15vh]">
         {projects.map((project, index) => (
           <div className={"" + getLastStyle(index)} key={index}>
@@ -95,15 +99,18 @@ export default function ProjectsSection() {
               className="flex flex-col justify-between w-[50vw] small:w-[100vw] max-w-[700px] min-h-[60vh] stroke-glass text-white/80 px-[5%] py-[6%] bg-black/30 backdrop-blur-2xl"
             >
               <div>
-                <h3 className="text-5xl uppercase font-bold mb-4">
-                  {project.title}
-                </h3>
+                <Link href="#" className="flex gap-4">
+                  <h3 className="text-5xl uppercase font-bold mb-4 group ">
+                    {project.title}
+                    <FaChevronRight className="inline group-hover:opacity-100 opacity-0 transition-opacity duration-300" />
+                  </h3>
+                </Link>
                 <div className="flex gap-main mb-10">
                   {project.categories.map((category, index) => (
                     <ProjectCategory key={index} category={category} />
                   ))}
                 </div>
-                <p className="text-sm ">
+                <p className="text-sm leading-[200%]">
                   {project.description} Lorem, ipsum dolor sit amet consectetur
                   adipisicing elit. Nulla laboriosam voluptates, sapiente natus
                   beatae temporibus molestias corporis sequi corrupti cumque
@@ -118,8 +125,7 @@ export default function ProjectsSection() {
                     alt={project.author.name}
                     width={50}
                     height={50}
-                    objectFit="cover"
-                    className="rounded-full w-10 h-10"
+                    className="rounded-full w-10 h-10 object-cover"
                   />
                   <span className="text-sm font-semibold">
                     {project.author.name}
@@ -145,22 +151,16 @@ export default function ProjectsSection() {
 }
 
 function ProjectCategory({ category }: { category: Category }) {
-  const ref = useRef<LottieRefCurrentProps>(null);
-
   return (
     <Link
       href={"#" + category.replace(" ", "-").toLowerCase()}
       className="flex-center px-3 py-1.5 gap-2.5 stroke-glass"
-      onMouseEnter={() => {
-        ref.current?.play();
-      }}
     >
-      <LottieReact
-        loop={false}
-        autoplay={false}
-        lottieRef={ref}
-        onComplete={() => ref.current?.stop()}
-        animation={categoryLotties[category]}
+      <Image
+        src={"/images/icons/" + categoryLotties[category] + ".svg"}
+        alt={category}
+        width={24}
+        height={24}
         className="w-6 h-6"
       />
       <span className="text-[10px] font-extrabold uppercase">{category}</span>
