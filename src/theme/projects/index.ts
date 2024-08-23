@@ -37,7 +37,7 @@ export const projects: Project[] = [
       name: "DELTIX",
       avatar: "logo_icon.svg",
     },
-    image: "dial0.svg",
+    image: "C2_0.svg",
   },
   {
     title: "AI DIAL Open Source",
@@ -286,13 +286,13 @@ export const projects: Project[] = [
 export const categoryLotties: {
   [key in Category]: keyof typeof lotties;
 } = {
-  news: "newsWhite",
-  engineering: "engineeringWhite",
-  trading: "tradingWhite",
-  ai: "iotWhite",
-  events: "eventsWhite",
-  algorithms: "algorithmsWhite",
-  iot: "iotWhite",
-  "machine learning": "machineLearningWhite",
-  math: "mathWhite",
+  news: "news",
+  engineering: "engineering",
+  trading: "trading",
+  ai: "iot",
+  events: "events",
+  algorithms: "algorithms",
+  iot: "iot",
+  "machine learning": "machineLearning",
+  math: "math",
 };
