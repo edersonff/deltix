@@ -48,22 +48,8 @@ export default function LocomotiveProvider({
   }, [containerRef]);
 
   return (
-    <
-      // options={{
-      //   smooth: true,
-      // }}
-      // location={pathname}
-      // onLocationChange={(scroll: any) =>
-      //   scroll.scrollTo(0, { duration: 0, disableLerp: true })
-      // }
-      // onUpdate={(scroll: any) => {
-      //   console.log(1);
-      // }}
-      // containerRef={containerRef}
-    >
-      <div data-scroll-container id="scroll-container" ref={containerRef}>
-        {children}
-      </div>
-    </>
+    <div data-scroll-container id="scroll-container" ref={containerRef}>
+      {children}
+    </div>
   );
 }

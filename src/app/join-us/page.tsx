@@ -1,5 +1,6 @@
 "use client";
 
+import Footer from "@/components/footer";
 import Header from "@/components/header";
 import LocomotiveProvider from "@/providers/locomotive";
 import Image from "next/image";
@@ -55,7 +56,7 @@ export default function JoinUs() {
             className="flex opacity-50"
           >
             <h2
-              className="text-[200px] small:text-[150px] whitespace-nowrap font-source-code-pro leading-[100%] text-stroke font-extrabold uppercase text-black/5"
+              className="text-[200px] small:text-[150px] whitespace-nowrap font-source-code-pro leading-[100%] font-extrabold uppercase text-black/5"
               style={{
                 WebkitTextStroke: "2px #000",
               }}
@@ -197,7 +198,7 @@ export default function JoinUs() {
                 src="/images/stock/about-1.jpg"
                 alt="About Deltix Solutions 1"
                 layout="fill"
-                objectFit="cover"
+                className="object-cover"
                 data-scroll
                 data-scroll-speed="-4"
               />
@@ -227,7 +228,7 @@ export default function JoinUs() {
                 src="/images/stock/about-2.jpg"
                 alt="About Deltix Solutions 1"
                 layout="fill"
-                objectFit="cover"
+                className="object-cover"
                 data-scroll
                 data-scroll-speed="-4"
               />
@@ -259,7 +260,7 @@ export default function JoinUs() {
                 src="/images/stock/about-3.jpg"
                 alt="About Deltix Solutions 3"
                 layout="fill"
-                objectFit="cover"
+                className="object-cover"
                 data-scroll
                 data-scroll-speed="-4"
               />
@@ -321,6 +322,10 @@ export default function JoinUs() {
               ))}
             </div>
           </div>
+        </section>
+
+        <section data-scroll-section>
+          <Footer flat />
         </section>
       </main>
     </LocomotiveProvider>

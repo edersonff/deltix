@@ -32,8 +32,7 @@ export default function Products() {
             src="/images/illustrations/montains/bg.svg"
             alt="Background montains Illustration"
             layout="fill"
-            objectFit="cover"
-            className="absolute -z-50"
+            className="absolute -z-50 object-cover"
           />
 
           <Image

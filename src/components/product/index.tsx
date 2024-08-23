@@ -20,8 +20,7 @@ export default function Product({
         src={"/images/products/" + background}
         alt={name}
         layout="fill"
-        objectFit="cover"
-        className="absolute transition-opacity duration-300"
+        className="absolute transition-opacity duration-300 object-cover"
         style={{
           opacity: isHovered ? 0.1 : 0,
         }}
