@@ -7,7 +7,6 @@ import Noise from "@/components/noise";
 import { motion } from "framer-motion";
 import { categories } from "@/theme/categories";
 import Category from "@/components/category";
-import Draggable from "react-draggable";
 import Laptop from "@/components/Laptop";
 import ProjectsSection from "@/sections/projects";
 import LocomotiveProvider from "@/providers/locomotive";
@@ -19,31 +18,14 @@ import Footer from "@/components/footer";
 import GraphSection from "@/sections/graph";
 import CommitsSections from "@/sections/commits";
 import { TypeAnimation } from "react-type-animation";
+import ProjectsBackground from "@/components/projects";
 
 export default function Home() {
-  const currentProject = useProjectStore((state) => state.project);
-
   return (
     <LocomotiveProvider>
       <Loading isComponent={true} />
 
-      {projects.map((project, index) => (
-        <motion.div
-          key={index}
-          className="fixed top-0 left-0 w-[60vw] opacity-50 h-full"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: currentProject === index ? 1 : 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Image
-            src={"/images/projects/" + project.image}
-            alt={project.title}
-            layout="fill"
-            objectFit="cover"
-          />
-          <div className="absolute right-0 top-0 h-full w-full bg-gradient-to-l from-neutral-900 to-transparent"></div>
-        </motion.div>
-      ))}
+      <ProjectsBackground />
 
       <main>
         <Noise
@@ -90,7 +72,7 @@ export default function Home() {
                     <Link
                       href="#"
                       role="button"
-                      className="flex-3 overflow-hidden small:w-full big:max-w-main-3 bg-gradient-to-b from-primary to-secondary text-white font-bold uppercase text-sm small:text-xs text-center px-5 py-3 relative group rounded-full"
+                      className="flex-3 overflow-hidden small:w-full big:max-w-main-3 bg-gradient-to-b from-primary to-secondary text-white font-bold uppercase text-sm small:text-xs text-center px-5 py-3 relative group rounded-full hover:border-2 border-white transition-all"
                     >
                       Let&apos;s Code
                     </Link>
@@ -99,9 +81,10 @@ export default function Home() {
                     <Link
                       href="#"
                       role="button"
-                      className="flex-2 small:w-full big:max-w-main-2 text-zinc-400 font-bold uppercase text-sm small:text-xs text-center px-5 py-3 relative group"
+                      className="flex-2 small:w-full big:max-w-main-2 text-zinc-400 font-bold uppercase text-sm small:text-xs text-center px-5 py-3 relative group hover:border-2 border-transparent transition-all"
                     >
-                      <div className="absolute-full box-glass rounded-full group-hover:bg-white/10"></div>
+                      <div className="absolute-full box-glass rounded-full"></div>
+                      <div className="absolute-full rounded-full group-hover:bg-white/10 transition-all"></div>
                       Contact us
                     </Link>
                   </GlitchBtn>
@@ -138,13 +121,7 @@ export default function Home() {
               className="flex"
             >
               <h2 className="font-source-code-pro leading-[100%] text-stroke font-extrabold uppercase text-white/5">
-                PROJECTS
-              </h2>
-              <h2 className="font-source-code-pro leading-[100%] text-stroke font-extrabold uppercase text-white/5">
-                PROJECTS
-              </h2>
-              <h2 className="font-source-code-pro leading-[100%] text-stroke font-extrabold uppercase text-white/5">
-                PROJECTS
+                PROJECTSPROJECTSPROJECTS
               </h2>
             </div>
             <div
@@ -154,13 +131,7 @@ export default function Home() {
               className="flex"
             >
               <h2 className="font-source-code-pro leading-[100%] text-stroke font-extrabold uppercase text-white/5">
-                PROJECTS
-              </h2>
-              <h2 className="font-source-code-pro leading-[100%] text-stroke font-extrabold uppercase text-white/5">
-                PROJECTS
-              </h2>
-              <h2 className="font-source-code-pro leading-[100%] text-stroke font-extrabold uppercase text-white/5">
-                PROJECTS
+                PROJECTSPROJECTSPROJECTS
               </h2>
             </div>
             <div
@@ -170,34 +141,12 @@ export default function Home() {
               className="flex"
             >
               <h2 className="font-source-code-pro leading-[100%] text-stroke font-extrabold uppercase text-white/5">
-                PROJECTS
-              </h2>
-              <h2 className="font-source-code-pro leading-[100%] text-stroke font-extrabold uppercase text-white/5">
-                PROJECTS
-              </h2>
-              <h2 className="font-source-code-pro leading-[100%] text-stroke font-extrabold uppercase text-white/5">
-                PROJECTS
+                PROJECTSPROJECTSPROJECTS
               </h2>
             </div>
           </div>
           <div className="content relative flex-center flex-1">
-            {/* <div
-              data-scroll
-              data-scroll-speed="4"
-              className="flex-center relative -z-10"
-            >
-              <Image
-                src="/images/texts/projects.svg"
-                alt="Projects"
-                width={1000}
-                height={500}
-                priority
-                className="unselectable undraggable inline-block relative opacity-60 z-0 "
-              />
-              <div className="absolute min-w-[380px] h-[0px] -z-20 shadow-[0px_0px_600px_100px_rgb(7,214,242,0.75)] mix-blend-color-dodge" />
-            </div> */}
-
-            <Draggable>
+            <>
               <div
                 data-scroll
                 data-scroll-speed="1"
@@ -222,9 +171,9 @@ export default function Home() {
     {"\n"}\_| |_/\___|_|_|\___/   \/  \/ \___/|_|  |_|\__,_&#40;_&#41;
     </p>
               </div>
-            </Draggable>
+            </>
 
-            <Draggable>
+            <>
               <div
                 data-scroll
                 data-scroll-speed="2"
@@ -258,9 +207,9 @@ export default function Home() {
                   />
                 </p>
               </div>
-            </Draggable>
+            </>
 
-            <Draggable>
+            <>
               <div
                 data-scroll
                 data-scroll-speed="1"
@@ -309,9 +258,9 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-            </Draggable>
+            </>
 
-            <Draggable>
+            <>
               <div
                 data-scroll
                 data-scroll-speed="2"
@@ -346,7 +295,7 @@ export default function Home() {
                   />
                 </p>
               </div>
-            </Draggable>
+            </>
           </div>
         </Noise>
 
@@ -359,13 +308,6 @@ export default function Home() {
 
         <section data-scroll-section className="bg-neutral-950">
           <GraphSection />
-        </section>
-
-        <section
-          data-scroll-section
-          className="min-h-screen relative flex-center text-4xl"
-        >
-          <CommitsSections />
         </section>
 
         <section data-scroll-section>
