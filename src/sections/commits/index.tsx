@@ -7,6 +7,7 @@ import Image from "next/image";
 import React, { HTMLAttributes, RefObject, useMemo, useRef } from "react";
 
 export default function CommitsSections() {
+  const commitsRef = useRef<HTMLDivElement[]>([]);
   const [scrollerProxy, locomotive] = useScrollerProxy();
 
   const months = useRef<HTMLDivElement>(null);
@@ -15,7 +16,12 @@ export default function CommitsSections() {
   const trigger = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    if (!locomotive || !scrollerProxy || !locomotive) {
+    if (
+      !locomotive ||
+      !scrollerProxy ||
+      !locomotive.el ||
+      commitsRef.current?.filter(Boolean).length !== 72 * 7
+    ) {
       return;
     }
 
@@ -50,6 +56,29 @@ export default function CommitsSections() {
       },
     });
 
+    const anims: gsap.core.Tween[] = [];
+
+    for (const block of commitsRef.current) {
+      const w = block.offsetWidth;
+      const x = block.offsetLeft;
+
+      const windowH = window.innerHeight;
+
+      const anim = gsap.to(block, {
+        translateY: () => 0,
+        ease: "none",
+        scrollTrigger: {
+          scroller: scrollContainer,
+          trigger: block,
+          start: "top top",
+          end: () => `+=${windowH}`,
+          scrub: true,
+        },
+      });
+
+      anims.push(anim);
+    }
+
     ScrollTrigger.addEventListener("refresh", () => {
       // locomotive.update();
     });
@@ -58,19 +87,14 @@ export default function CommitsSections() {
 
     return () => {
       pin.kill();
+      monthsAnimation.kill();
+      anims.forEach((anim) => anim.kill());
     };
-  }, [locomotive, locomotive]);
+  }, [locomotive, locomotive, commitsRef]);
 
   return (
-    <div ref={trigger} className="relative w-full">
+    <div ref={trigger} className="relative w-full overflow-hidden">
       <div ref={container} className="min-h-screen relative min-w-[200vw]">
-        {/* <Image
-          src="/images/frames/dots.svg"
-          alt="Dots Frame"
-          layout="fill"
-          priority
-          className="unselectable undraggable"
-        /> */}
         <div
           className="absolute-full -z-50 bg-gradient-radial from-black via-neutral-950 to-black flex items-center justify-center"
           style={{
@@ -116,7 +140,7 @@ export default function CommitsSections() {
 
         <div className="absolute w-full h-full pl-[87px] flex items-center gap-1.5">
           {[...Array(72)].map((_, i) => (
-            <BlockColumn key={i} container={container} />
+            <BlockColumn key={i} innerRef={commitsRef} />
           ))}
         </div>
       </div>
@@ -168,50 +192,8 @@ const colors: (Colors | null)[] = [
   "neutral",
 ];
 
-function BlockColumn({ container }: { container: RefObject<HTMLDivElement> }) {
-  const [scrollerProxy, locomotive] = useScrollerProxy();
-  const ref = useRef<HTMLDivElement[]>([]);
+function BlockColumn({ innerRef }: { innerRef: RefObject<HTMLDivElement[]> }) {
   const columnRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(() => {
-    if (!locomotive || !scrollerProxy || ref.current.length !== 7) {
-      return;
-    }
-
-    const scrollContainer = locomotive.el;
-
-    scrollerProxy();
-
-    const anims: gsap.core.Tween[] = [];
-
-    for (const block of ref.current) {
-      const w = block.offsetWidth;
-      const x = block.offsetLeft;
-
-      const windowH = window.innerHeight;
-
-      const anim = gsap.to(block, {
-        translateY: () => 0,
-        ease: "none",
-        scrollTrigger: {
-          scroller: scrollContainer,
-          trigger: block,
-          start: "top top",
-          end: () => `+=${windowH}`,
-          scrub: true,
-        },
-      });
-
-      anims.push(anim);
-    }
-
-    ScrollTrigger.refresh();
-
-    return () => {
-      anims.forEach((anim) => anim.kill());
-    };
-  }, [locomotive, scrollerProxy, ref.current.length]);
-
   return (
     <div className="flex flex-col gap-1.5" ref={columnRef}>
       {[
@@ -238,8 +220,8 @@ function BlockColumn({ container }: { container: RefObject<HTMLDivElement> }) {
           <Block
             key={i}
             innerRef={(el) => {
-              if (el && !ref.current.includes(el)) {
-                ref.current.push(el);
+              if (el && !innerRef.current?.includes(el)) {
+                innerRef.current?.push(el);
               }
             }}
             style={{

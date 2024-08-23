@@ -10,6 +10,8 @@ import { BiSolidUpArrow } from "react-icons/bi";
 export default function GraphSection() {
   const [scrollerProxy, locomotive] = useScrollerProxy();
 
+  const charts = useRef<HTMLDivElement[]>([]);
+
   const donuts = useRef<HTMLDivElement>(null);
 
   const donut1 = useRef<HTMLDivElement>(null);
@@ -24,7 +26,7 @@ export default function GraphSection() {
   const trigger = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    if (!scrollerProxy || !locomotive) {
+    if (!scrollerProxy || !locomotive || charts.current.length !== 126) {
       return;
     }
 
@@ -135,6 +137,27 @@ export default function GraphSection() {
       },
     });
 
+    const anims: gsap.core.Tween[] = [];
+    const intervals: NodeJS.Timeout[] = [];
+
+    const toHeight = (el: HTMLElement) =>
+      gsap.quickTo(el, "height", { duration: 0.6, ease: "power3" });
+    const toOpacity = (el: HTMLElement) =>
+      gsap.quickTo(el, "opacity", { duration: 0.6, ease: "power3" });
+
+    for (const chart of charts.current) {
+      const toHeightChart = toHeight(chart);
+      const toOpacityChart = toOpacity(chart);
+
+      const interval = setInterval(() => {
+        toHeightChart(Math.floor(Math.random() * 200) + 50);
+        toOpacityChart(Math.floor(Math.random() * 10) / 50 + 0.05);
+      }, 1000);
+
+      intervals.push(interval);
+      // anims.push(anim);
+    }
+
     ScrollTrigger.addEventListener("refresh", () => {
       // locomotive.update();
     });
@@ -146,8 +169,13 @@ export default function GraphSection() {
       donut1Animation.kill();
       donut2Animation.kill();
       donut3Animation.kill();
+      donutsAnimation.kill();
+      graph1Animation.kill();
+      graph2Animation.kill();
+      graph3Animation.kill();
+      anims.forEach((anim) => anim.kill());
     };
-  }, [locomotive, scrollerProxy]);
+  }, [locomotive, scrollerProxy, charts]);
 
   return (
     <div ref={trigger} className="relative">
@@ -288,68 +316,25 @@ export default function GraphSection() {
           />
         </div>
 
-        <ChartLines container={container} />
+        <ChartLines innerRef={charts} />
       </div>
     </div>
   );
 }
 
 export function ChartLines({
-  container,
+  innerRef: charts,
 }: {
-  container: RefObject<HTMLDivElement>;
+  innerRef: RefObject<HTMLDivElement[]>;
 }) {
-  const [scrollerProxy, locomotive] = useScrollerProxy();
-  const charts = useRef<HTMLDivElement[]>([]);
-
-  useGSAP(() => {
-    if (!scrollerProxy || !locomotive || charts.current.length !== 126) {
-      return;
-    }
-
-    scrollerProxy();
-
-    let animations = [];
-
-    for (const chart of charts.current) {
-      const x = chart.getBoundingClientRect().left;
-      const w = chart.offsetWidth;
-
-      const anim = gsap.to(chart, {
-        height: Math.floor(Math.random() * 200) + 50,
-        opacity: Math.floor(Math.random() * 10) / 50 + 0.05,
-        ease: "none",
-        scrollTrigger: {
-          scroller: locomotive.el,
-          trigger: container.current,
-          start: "top top",
-          scrub: true,
-          end: () => "+=" + (x + w),
-        },
-      });
-
-      animations.push(anim);
-    }
-
-    ScrollTrigger.addEventListener("refresh", () => {
-      locomotive.update();
-    });
-
-    ScrollTrigger.refresh();
-
-    return () => {
-      animations.forEach((anim) => anim.kill());
-    };
-  }, [charts, scrollerProxy]);
-
   return (
     <div className="absolute z-50 left-0 bottom-0 flex items-end">
       {Array.from({ length: 126 }).map((_, index) => (
         <div
           key={index}
           ref={(el) => {
-            if (el && !charts.current.includes(el)) {
-              charts.current.push(el);
+            if (el && !charts.current?.includes(el)) {
+              charts.current?.push(el);
             }
           }}
           className="w-7 bg-gradient-to-b from-primary via-neutral-900 to-neutral-950"
