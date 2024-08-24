@@ -10,7 +10,7 @@ import CommitsSections from "@/sections/commits";
 export default function Removed() {
   return (
     <LocomotiveProvider>
-      <Loading isComponent={true} />
+      <Loading isComponent />
 
       <main>
         <section

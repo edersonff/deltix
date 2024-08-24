@@ -21,7 +21,6 @@ export default function Category({
       onMouseEnter={() => {
         ref.current?.play();
       }}
-      // onMouseLeave={() => ref.current?.stop()}
       {...props}
     >
       <div
