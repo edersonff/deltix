@@ -7,17 +7,17 @@ import LocomotiveProvider from "@/providers/locomotive";
 import { products } from "@/theme/products";
 import Image from "next/image";
 import React from "react";
+import Loading from "../loading";
 
 export default function Products() {
   return (
     <LocomotiveProvider>
+      <Loading isComponent />
+
       <main className="bg-[#1e1f3a]">
-        <section
-          data-scroll-section
-          className="h-screen small:h-[50vh] relative"
-        >
+        <section data-scroll-section className="h-screen relative">
           <Header style="white" />
-          <div className="absolute text-white/50 -z-40 top-[20%] flex-center w-full">
+          <div className="absolute text-white/50 -z-40 top-[15%] small:top-[25%] flex-center w-full">
             <div className="content w-full">
               <h2 className="font-source-code-pro backdrop-blur-lg">
                 <span className="text-4xl">Our</span>
@@ -40,7 +40,7 @@ export default function Products() {
             alt="Clouds Illustration"
             width={1920}
             height={1080 / 2}
-            className="absolute -z-50 top-0 left-0"
+            className="absolute -z-50 top-0 left-0 object-cover"
             data-scroll
             data-scroll-speed="1"
             data-scroll-position="top"
@@ -58,6 +58,7 @@ export default function Products() {
                 alt="Mountain Illustration"
                 width={1920}
                 height={1080 / 3}
+                className="small:h-[40%] object-cover"
               />
             </div>
             <div className="min-h-[200svh] w-full bg-[#1e1f3a]"></div>
@@ -68,7 +69,7 @@ export default function Products() {
             alt="Mountain Illustration"
             width={1920}
             height={1080 / 3}
-            className="absolute -z-[11] bottom-0 left-0"
+            className="absolute -z-[11] bottom-0 left-0 small:h-[45%] object-cover"
             data-scroll
             data-scroll-speed="10"
             data-scroll-position="top"
@@ -79,7 +80,7 @@ export default function Products() {
             alt="Mountain Illustration"
             width={1920}
             height={1080 / 3}
-            className="absolute -z-[12] bottom-0 right-0"
+            className="absolute -z-[12] bottom-0 right-0 small:h-[50%] object-cover"
             data-scroll
             data-scroll-speed="6"
             data-scroll-position="top"
@@ -90,7 +91,7 @@ export default function Products() {
             alt="Mountain Illustration"
             width={1920}
             height={1080 / 3}
-            className="absolute -z-[13] bottom-0 right-0"
+            className="absolute -z-[13] bottom-0 right-0 small:h-[55%] object-cover"
             data-scroll
             data-scroll-speed="3"
             data-scroll-position="top"
@@ -101,7 +102,7 @@ export default function Products() {
             alt="Mountain Illustration"
             width={1920}
             height={1080 / 3}
-            className="absolute -z-[14] bottom-0 right-0"
+            className="absolute -z-[14] bottom-0 right-0 small:h-[60%] object-cover"
             data-scroll
             data-scroll-speed="1"
             data-scroll-position="top"
@@ -112,14 +113,20 @@ export default function Products() {
             alt="Sun Illustration"
             width={500}
             height={500}
-            className="absolute -z-[15] -top-[10%] right-[10%]"
+            className="absolute -z-[15] -top-[10%] right-[10%] small:h-[65%] object-cover"
             data-scroll
             data-scroll-speed="1"
             data-scroll-position="top"
           />
         </section>
 
-        <section data-scroll-section className="relative z-50">
+        <section
+          data-scroll-section
+          className="relative z-50"
+          style={{
+            height: (products.length - 3) * 100 + "vh",
+          }}
+        >
           <div data-scroll data-scroll-speed="10" data-scroll-position="top">
             {products.map((product, index) => (
               <Product key={index} {...product} />
