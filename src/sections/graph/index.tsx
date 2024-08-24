@@ -212,9 +212,11 @@ export default function GraphSection() {
         </div>
 
         <div
-          className="absolute-full -z-50 bg-gradient-radial from-black via-neutral-950 to-black flex items-center justify-center"
+          className="absolute-full -z-50 bg-gradient-radial from-neutral-900/30 via-neutral-900/10 flex items-center justify-center"
           style={{
-            background: "url(/images/frames/squares.svg)",
+            maskImage: "url(/images/frames/squares.svg)",
+            maskRepeat: "repeat-x",
+            maskSize: "auto 100%",
             backgroundRepeat: "repeat-x",
             backgroundSize: "auto 100%",
           }}
@@ -227,7 +229,7 @@ export default function GraphSection() {
             maskSize: "200% 100%",
           }}
           ref={graph1}
-          className="absolute-full bottom-[10%] left-0 z-10"
+          className="absolute-full bottom-[10%] left-0 z-10 [&>*]:shadow-[0px_0px_15px_0px_rgba(7,215,242,0.5)]"
         >
           <div className="bg-primary absolute w-[200px] h-2 transform -translate-y-1/2 bottom-[100px] left-0 origin-left -rotate-[25deg]" />
           <div className="bg-primary absolute w-[100px] h-2 transform -translate-y-1/2 bottom-[185px] left-[178px] origin-left rotate-[30deg]" />
@@ -313,7 +315,7 @@ export function ChartLines({
   innerRef: RefObject<HTMLDivElement[]>;
 }) {
   return (
-    <div className="absolute z-50 left-0 bottom-0 flex items-end">
+    <div className="absolute z-50 w-full left-0 bottom-0 flex items-end">
       {Array.from({ length: 126 }).map((_, index) => (
         <div
           key={index}
