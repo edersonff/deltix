@@ -5,16 +5,13 @@ import React, { useCallback, useRef } from "react";
 
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useLocomotiveStore } from "@/store/locomotive";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { Category } from "@/theme/categories";
-import { LottieRefCurrentProps } from "lottie-react";
 import { useProjectStore } from "@/store/project";
 import Link from "next/link";
 import Image from "next/image";
 import GlitchBtn from "@/components/button";
 import { FiExternalLink } from "react-icons/fi";
-import LottieReact from "@/components/lottie";
 import { useScrollerProxy } from "@/utils/gsap";
 import { FaChevronRight } from "react-icons/fa6";
 
@@ -28,25 +25,24 @@ export default function ProjectsSection() {
 
   const container = useRef<HTMLDivElement>(null);
   const trigger = useRef<HTMLDivElement>(null);
-
   useGSAP(() => {
     if (!scrollerProxy || !locomotive) {
       return;
     }
-    console.log(1);
 
     const scrollContainer = locomotive.el;
 
-    scrollerProxy(() => {
-      const projectLength = projects.length;
+    function updateProject() {
       const width = container.current?.offsetWidth || 1;
       const xTranslate = -Number(
         container.current?.style?.transform?.split("(")[1]?.split("px")[0]
       );
 
-      const scrollWidth = xTranslate / (width / projectLength);
+      const scrollProject = Math.round(xTranslate / (width / projects.length));
 
-      const scrollProject = Math.round(scrollWidth);
+      if (xTranslate === 0) {
+        return setCurrentProject(-1);
+      }
 
       if (scrollProject !== currentProject) {
         if (scrollProject <= 0) {
@@ -55,12 +51,17 @@ export default function ProjectsSection() {
           setCurrentProject(scrollProject);
         }
       }
-    });
+    }
+
+    scrollerProxy();
 
     const pin = gsap.to(container.current, {
       translateX: () => -Number(container.current?.offsetWidth),
       ease: "none",
       scrollTrigger: {
+        onUpdate: () => {
+          updateProject();
+        },
         scroller: scrollContainer,
         trigger: trigger.current,
         start: "top top",
@@ -96,16 +97,37 @@ export default function ProjectsSection() {
           <div className={"" + getLastStyle(index)} key={index}>
             <div
               key={index}
-              className="flex flex-col justify-between w-[50vw] small:w-[100vw] max-w-[700px] min-h-[60vh] stroke-glass text-white/80 px-[5%] py-[6%] bg-black/30 backdrop-blur-2xl"
+              className="flex flex-col justify-between w-[50vw] small:w-[100vw] max-w-[700px] min-h-[60vh] text-white/80 px-[5%] py-[6%] relative"
             >
-              <div>
+              <div
+                className="absolute-full -z-10 box-glass rounded-xl transition-all duration-300"
+                style={{
+                  opacity: index === currentProject ? 1 : 0.25,
+                }}
+              />
+              <div
+                className="absolute-full -z-20 rounded-xl bg-black/30 backdrop-blur-2xl transition-all duration-300"
+                style={{
+                  background:
+                    index === currentProject
+                      ? "rgba(0, 0, 0, 0.3)"
+                      : "rgba(0, 0, 0, 0.1)",
+                }}
+              />
+
+              <div
+                style={{
+                  opacity: index === currentProject ? 1 : 0.25,
+                }}
+                className="transition-all duration-300"
+              >
                 <Link href="#" className="flex gap-4">
-                  <h3 className="text-5xl uppercase font-bold mb-4 group ">
+                  <h3 className="text-5xl uppercase font-bold mb-4 group">
                     {project.title}
                     <FaChevronRight className="inline group-hover:opacity-100 opacity-0 transition-opacity duration-300" />
                   </h3>
                 </Link>
-                <div className="flex gap-main mb-10">
+                <div className="flex gap-5 mb-10">
                   {project.categories.map((category, index) => (
                     <ProjectCategory key={index} category={category} />
                   ))}
@@ -154,7 +176,7 @@ function ProjectCategory({ category }: { category: Category }) {
   return (
     <Link
       href={"#" + category.replace(" ", "-").toLowerCase()}
-      className="flex-center px-3 py-1.5 gap-2.5 stroke-glass"
+      className="flex-center px-3 py-1.5 gap-2.5 stroke-glass bg-black/0 hover:bg-black/30 transition-all min-w-main-1"
     >
       <Image
         src={"/images/icons/" + categoryLotties[category] + ".svg"}
