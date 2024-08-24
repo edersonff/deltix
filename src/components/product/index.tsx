@@ -20,16 +20,16 @@ export default function Product({
         src={"/images/products/" + background}
         alt={name}
         layout="fill"
-        className="absolute transition-opacity duration-300 object-cover"
+        className="absolute transition-opacity duration-300 object-cover opacity-0 small:opacity-10"
         style={{
-          opacity: isHovered ? 0.1 : 0,
+          opacity: isHovered ? 0.1 : undefined,
         }}
       />
-      <div className="content w-full py-[12vh]">
+      <div className="content w-full flex-center py-[12vh]">
         <div
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          className="stroke-glass w-full h-full flex-center flex-col py-[16%] bg-black/20 backdrop-blur-lg"
+          className="stroke-glass w-full h-full flex-center max-w-main-11 flex-col py-[10%] bg-black/20 backdrop-blur-lg px-4"
         >
           <Image
             src={"/images/products/" + logo}
@@ -39,10 +39,10 @@ export default function Product({
             className="rounded-full mb-8"
           />
           <h2
-            className="text-5xl font-extralight mb-8"
+            className="text-5xl small:text-3xl font-extralight mb-8"
             dangerouslySetInnerHTML={{ __html: name }}
           />
-          <p className="max-w-main-7 text-sm mb-20 text-center leading-[250%]">
+          <p className="max-w-main-7 text-sm small:text-[10px] mb-20 text-center leading-[250%]">
             {description}
           </p>
 
@@ -50,7 +50,7 @@ export default function Product({
             <Link
               href={href}
               role="button"
-              className="flex-3 flex-center gap-2 overflow-hidden max-w-main-3 bg-primary/70 text-white/70 font-bold text-sm small:text-xs text-center px-5 py-3 relative group rounded-full"
+              className="flex-3 flex-center gap-2 overflow-hidden max-w-main-3 bg-primary/70 text-white/70 font-bold text-sm small:text-xs text-center px-5 py-2.5 relative group rounded-full"
             >
               Read more
               <FiExternalLink className="text-xl" />
