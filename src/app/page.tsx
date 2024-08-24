@@ -23,7 +23,7 @@ import ProjectsBackground from "@/components/projects";
 export default function Home() {
   return (
     <LocomotiveProvider>
-      <Loading isComponent={true} />
+      <Loading isComponent />
 
       <ProjectsBackground />
 
@@ -67,21 +67,21 @@ export default function Home() {
                   Ut enim ad minim veniam, quis nostrud exercitation ullamco
                   laboris nisi ut
                 </p>
-                <div className="flex gap-main small:flex-col mt-[10%] relative z-10">
-                  <GlitchBtn>
+                <div className="flex gap-main mt-[10%] relative z-10">
+                  <GlitchBtn containerClass="flex-3 big:max-w-main-4">
                     <Link
                       href="#"
                       role="button"
-                      className="flex-3 overflow-hidden small:w-full big:max-w-main-3 bg-gradient-to-b from-primary to-secondary text-white font-bold uppercase text-sm small:text-xs text-center px-5 py-3 relative group rounded-full hover:border-2 border-white transition-all"
+                      className="overflow-hidden w-full bg-gradient-to-b from-primary to-secondary text-white font-bold uppercase text-sm small:text-xs text-center px-5 py-3 relative group rounded-full hover:border-[1.5px] border-white transition-all"
                     >
                       Let&apos;s Code
                     </Link>
                   </GlitchBtn>
-                  <GlitchBtn>
+                  <GlitchBtn containerClass="flex-2 big:max-w-main-2">
                     <Link
                       href="#"
                       role="button"
-                      className="flex-2 small:w-full big:max-w-main-2 text-zinc-400 font-bold uppercase text-sm small:text-xs text-center px-5 py-3 relative group hover:border-2 border-transparent transition-all"
+                      className="flex-2 w-full text-zinc-400 font-bold uppercase text-sm small:text-xs text-center px-5 py-3 relative group hover:border-2 border-transparent transition-all"
                     >
                       <div className="absolute-full box-glass rounded-full"></div>
                       <div className="absolute-full rounded-full group-hover:bg-white/10 transition-all"></div>
@@ -111,38 +111,53 @@ export default function Home() {
         <Noise
           data-scroll-section
           image="static-hero"
-          className="min-h-screen flex bg-neutral-950 py-[4%]"
+          className="min-h-screen small:min-h-[75vh] flex bg-neutral-950 py-[4%]"
         >
-          <div className="absolute top-0 left-0 w-full h-full flex text-[300px] small:text-[200px] flex-col justify-between overflow-hidden opacity-50">
+          <div className="absolute top-0 left-0 w-full h-full flex text-[300px] small:text-[200px] -tracking-[15px] font-source-code-pro text-stroke font-extrabold uppercase flex-col justify-between overflow-hidden opacity-50">
             <div
               data-scroll
               data-scroll-direction="horizontal"
               data-scroll-speed="4"
-              className="flex"
+              className="flex gap-20 relative -left-1/2"
             >
-              <h2 className="font-source-code-pro leading-[100%] text-stroke font-extrabold uppercase text-white/5">
-                PROJECTSPROJECTSPROJECTS
-              </h2>
+              {Array.from({ length: 3 }).map((_, index) => (
+                <h2
+                  key={index}
+                  className="leading-[100%] whitespace-nowrap text-white/5"
+                >
+                  PROJECTS
+                </h2>
+              ))}
             </div>
             <div
               data-scroll
               data-scroll-direction="horizontal"
               data-scroll-speed="-4"
-              className="flex"
+              className="flex gap-20 relative -left-1/2"
             >
-              <h2 className="font-source-code-pro leading-[100%] text-stroke font-extrabold uppercase text-white/5">
-                PROJECTSPROJECTSPROJECTS
-              </h2>
+              {Array.from({ length: 3 }).map((_, index) => (
+                <h2
+                  key={index}
+                  className="leading-[100%] whitespace-nowrap text-white/5"
+                >
+                  PROJECTS
+                </h2>
+              ))}
             </div>
             <div
               data-scroll
               data-scroll-direction="horizontal"
               data-scroll-speed="4"
-              className="flex"
+              className="flex gap-20 relative -left-1/2"
             >
-              <h2 className="font-source-code-pro leading-[100%] text-stroke font-extrabold uppercase text-white/5">
-                PROJECTSPROJECTSPROJECTS
-              </h2>
+              {Array.from({ length: 3 }).map((_, index) => (
+                <h2
+                  key={index}
+                  className="leading-[100%] whitespace-nowrap text-white/5"
+                >
+                  PROJECTS
+                </h2>
+              ))}
             </div>
           </div>
           <div className="content relative flex-center flex-1">
