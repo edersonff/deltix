@@ -100,7 +100,7 @@ export default function ProjectsSection() {
               className="flex flex-col justify-between w-[50vw] small:w-[100vw] max-w-[700px] min-h-[60vh] text-white/80 px-[5%] py-[6%] relative"
             >
               <div
-                className="absolute-full -z-10 box-glass rounded-xl transition-all duration-300"
+                className="absolute-full -z-10 box-glass rounded-xl transition-opacity duration-300"
                 style={{
                   opacity: index === currentProject ? 1 : 0.25,
                 }}
@@ -119,7 +119,7 @@ export default function ProjectsSection() {
                 style={{
                   opacity: index === currentProject ? 1 : 0.25,
                 }}
-                className="transition-all duration-300"
+                className="transition-opacity duration-300"
               >
                 <Link href="#" className="flex gap-4">
                   <h3 className="text-5xl uppercase font-bold mb-4 group">
@@ -140,7 +140,12 @@ export default function ProjectsSection() {
                   optio molestiae.
                 </p>
               </div>
-              <div className="flex justify-between">
+              <div
+                style={{
+                  opacity: index === currentProject ? 1 : 0.25,
+                }}
+                className="transition-opacity duration-300 flex justify-between"
+              >
                 <Link href="#" className="flex-center gap-4">
                   <Image
                     src={"/images/projects/" + project.author.avatar}
