@@ -2,13 +2,9 @@ import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { transition } from "@/theme/animation";
-import { useMouse } from "@uidotdev/usehooks";
-import { lerp } from "@/utils/math/lerp";
 
 export default function Laptop() {
   const imagesRef = useRef<HTMLDivElement>(null);
-
-  const [mouse] = useMouse();
   const [currentImage, setCurrentImage] = useState(0);
 
   useEffect(() => {
@@ -16,22 +12,6 @@ export default function Laptop() {
       setCurrentImage((prev) => (prev + 1) % 3);
     }, 7000);
     return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    function lerpMouse() {
-      if (!imagesRef.current) return;
-      const x = (mouse.x / window.innerWidth) * 100;
-      const y = (mouse.y / window.innerHeight) * 100;
-      imagesRef.current.style.transform = `rotateY(${lerp(
-        -45,
-        45,
-        x
-      )}deg) rotateX(${lerp(-7, 7, y)}deg)`;
-    }
-
-    window.addEventListener("mousemove", lerpMouse);
-    return () => window.removeEventListener("mousemove", lerpMouse);
   }, []);
 
   return (
