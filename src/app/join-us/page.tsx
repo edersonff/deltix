@@ -7,10 +7,14 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import CountUp from "react-countup";
+import Loading from "../loading";
+import GlitchBtn from "@/components/button";
 
 export default function JoinUs() {
   return (
     <LocomotiveProvider>
+      <Loading isComponent />
+
       <main className="">
         <div className="fixed-full -z-50 bg-white"></div>
         <section className="min-h-[92vh] relative" data-scroll-section>
@@ -25,7 +29,7 @@ export default function JoinUs() {
               <div className="max-w-main-6">
                 <h1
                   id="test"
-                  className="text-8xl small:text-6xl mb-3 font-source-code-pro font-extrabold text-white/80"
+                  className="text-8xl small:text-6xl mb-5 font-source-code-pro font-extrabold text-white/80"
                 >
                   Carrers
                 </h1>
@@ -35,6 +39,27 @@ export default function JoinUs() {
                   Ut enim ad minim veniam, quis nostrud exercitation ullamco
                   laboris nisi ut
                 </p>
+
+                <div className="flex gap-main mt-[10%] relative z-10">
+                  <GlitchBtn containerClass="flex-3 big:max-w-main-3">
+                    <Link
+                      href="#"
+                      role="button"
+                      className="overflow-hidden w-full bg-primary hover:bg-primary/80 text-white font-bold uppercase text-sm small:text-xs text-center px-5 py-3 relative group rounded-full"
+                    >
+                      Let&apos;s Code
+                    </Link>
+                  </GlitchBtn>
+                  <GlitchBtn containerClass="flex-2 big:max-w-main-2">
+                    <Link
+                      href="#"
+                      role="button"
+                      className="flex-2 w-full text-zinc-400 border border-zinc-400 rounded-full hover:bg-white/10 transition-all font-bold uppercase text-sm small:text-xs text-center px-5 py-3 relative group"
+                    >
+                      Contact us
+                    </Link>
+                  </GlitchBtn>
+                </div>
               </div>
             </div>
           </div>
@@ -56,7 +81,7 @@ export default function JoinUs() {
             className="flex opacity-50"
           >
             <h2
-              className="text-[200px] small:text-[150px] whitespace-nowrap font-source-code-pro leading-[100%] font-extrabold uppercase text-black/5"
+              className="text-[200px] small:text-[150px] -tracking-[15px] whitespace-nowrap font-source-code-pro leading-[100%] font-extrabold uppercase text-black/5"
               style={{
                 WebkitTextStroke: "2px #000",
               }}
@@ -64,8 +89,6 @@ export default function JoinUs() {
               Softwares apps websites design
             </h2>
           </div>
-          {/* <div className="absolute top-0 left-0 w-full h-full flex  flex-col justify-between overflow-hidden opacity-50">
-          </div> */}
         </section>
         <section className="py-[15%]" data-scroll-section>
           <div className="flex gap-main items-center small:flex-col content text-secondary">
