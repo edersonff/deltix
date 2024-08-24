@@ -6,52 +6,6 @@ export type Product = {
   href: string;
 };
 
-/**
- Products
-CryptoCortex
-TimeBase
-MarketMaker
-QuantOffice Cloud
-RTMath
-EMBER Server
-CryptoCortex
-CryptoCortex
-CryptoCortex
-Best in class white label and highly customizable trading platform across all asset classes for brokers, dealers, exchanges, sell-side traders, liquidity providers.
-
-Read more >
-TimeBase
-TimeBase
-TimeBase
-TimeBase is a high-performance time-series database, messaging system, and data modeling framework, designed for very fast data aggregation and retrieval.
-
-Read more >
-MarketMaker
-MarketMaker
-MarketMaker
-C2 MarketMaker is a specialized product developed by the DELTIX team to solve use cases of market makers, hedgers, and price arbitrageurs.
-
-Read more >
-QuantOffice Cloud
-QuantOffice Cloud
-QuantOffice Cloud
-QuantOffice Cloud is a specialized, integrated environment for development, prototyping, back-testing of different execution strategies, and live trading.
-
-Read more >
-RTMath
-RTMath
-RTMath
-RTMath provides a set of .NET and Java components and libraries for numerical calculations and analysis. RTMath components offer both ultra-fast execution and efficient memory usage.
-
-Read more >
-EMBER Server
-EMBER Server
-EMBER Server
-Execution Server (code name “Ember”) specializes in reliable and fast processing of trading signals for financial markets. Ember is also a stream processor for high-frequency trading.
-
-Read more >
- */
-
 export const products: Product[] = [
   {
     name: "Crypto<span style='color: #27C0F1;'>Cortex</span>",
@@ -66,24 +20,24 @@ export const products: Product[] = [
     description:
       "TimeBase is a high-performance time-series database, messaging system, and data modeling framework, designed for very fast data aggregation and retrieval.",
     href: "#",
-    logo: "timebase-logo.png",
-    background: "timebase-prod.png",
+    logo: "tb-logo.png",
+    background: "tb-prod.png",
   },
   {
     name: "Market<span style='color: #3a7ab8;'>Maker</span>",
     description:
       "C2 MarketMaker is a specialized product developed by the DELTIX team to solve use cases of market makers, hedgers, and price arbitrageurs.",
     href: "#",
-    logo: "marketmaker-logo.png",
-    background: "marketmaker-prod.png",
+    logo: "c2-logo.png",
+    background: "marketmaker3.png",
   },
   {
     name: "Quant<span style='color: #3a7ab8;'>Office</span> Cloud",
     description:
       "QuantOffice Cloud is a specialized, integrated environment for development, prototyping, back-testing of different execution strategies, and live trading.",
     href: "#",
-    logo: "quantoffice-logo.png",
-    background: "quantoffice-prod.png",
+    logo: "zed-logo.png",
+    background: "qo-invert.png",
   },
   {
     name: "RT<span style='color: #c27c2a;'>Math</span>",
@@ -91,7 +45,7 @@ export const products: Product[] = [
       "RTMath provides a set of .NET and Java components and libraries for numerical calculations and analysis. RTMath components offer both ultra-fast execution and efficient memory usage.",
     href: "#",
     logo: "rtmath-logo.png",
-    background: "rtmath-prod.png",
+    background: "rtmath.png",
   },
   {
     name: "EMBER <span style='color: #c27c2a;'>Server</span>",
@@ -99,6 +53,6 @@ export const products: Product[] = [
       "Execution Server (code name “Ember”) specializes in reliable and fast processing of trading signals for financial markets. Ember is also a stream processor for high-frequency trading.",
     href: "#",
     logo: "ember-logo.png",
-    background: "ember-prod.png",
+    background: "es45.png",
   },
 ];
