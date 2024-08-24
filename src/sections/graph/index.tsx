@@ -141,9 +141,9 @@ export default function GraphSection() {
     const intervals: NodeJS.Timeout[] = [];
 
     const toHeight = (el: HTMLElement) =>
-      gsap.quickTo(el, "height", { duration: 0.6, ease: "power3" });
+      gsap.quickTo(el, "height", { duration: 1, ease: "power3" });
     const toOpacity = (el: HTMLElement) =>
-      gsap.quickTo(el, "opacity", { duration: 0.6, ease: "power3" });
+      gsap.quickTo(el, "opacity", { duration: 1, ease: "power3" });
 
     for (const chart of charts.current) {
       const toHeightChart = toHeight(chart);
@@ -152,10 +152,9 @@ export default function GraphSection() {
       const interval = setInterval(() => {
         toHeightChart(Math.floor(Math.random() * 200) + 50);
         toOpacityChart(Math.floor(Math.random() * 10) / 50 + 0.05);
-      }, 1000);
+      }, Math.floor(Math.random() * 5000) + 1000);
 
       intervals.push(interval);
-      // anims.push(anim);
     }
 
     ScrollTrigger.addEventListener("refresh", () => {
@@ -211,19 +210,6 @@ export default function GraphSection() {
             <div className="h-[104px] w-[104px] p-4 stroke-8-glass backdrop-blur-lg rounded-full"></div>
           </div>
         </div>
-        {/* <div className="w-full h-full p-4 border-[8px] border-white/30 backdrop-blur-lg rounded-full">
-              <div
-                ref={donut2}
-                className="absolute-full stroke-8-primary rounded-full z-10"
-              />
-
-              <div className="w-full h-full border-[8px] border-white/30 backdrop-blur-lg rounded-full">
-                <div
-                  ref={donut3}
-                  className="absolute-full stroke-8-primary rounded-full z-10"
-                />
-              </div>
-            </div> */}
 
         <div
           className="absolute-full -z-50 bg-gradient-radial from-black via-neutral-950 to-black flex items-center justify-center"
@@ -234,7 +220,6 @@ export default function GraphSection() {
           }}
         />
 
-        {/* <div className="absolute top-0 left-0 w-[50vh] h-screen bg-gradient-to-r from-primary/0 to-primary"></div> */}
         <div
           style={{
             maskImage:
