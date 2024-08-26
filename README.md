@@ -1,36 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
 
-## Getting Started
+![Logo](https://deltix.ederson.tech/deltix/logo.svg)
 
-First, run the development server:
+</div>
+
+# Deltix - Website
+
+I created a non-official website for Deltix company, a homepage using Locomotive, Gsap and many more.
+
+## Screenshots
+
+![App Screenshot](https://deltix.ederson.tech/og/image.webp)
+
+## Environment Variables
+
+For running the project is not require any environment variables, but is needed for some features, as SEO config.
+
+`NEXT_PUBLIC_URL` - Domain used in OG (ex: https://website.com)
+
+## How to run locally
+
+Clone the project
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+  git clone https://github.com/edersonff/deltix-app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Go to the project directory
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+  cd deltix-app
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Install all project's dependencies
 
-## Learn More
+```bash
+  npm install #or yarn
+```
 
-To learn more about Next.js, take a look at the following resources:
+Start the devlopment listen at 3000 port
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+  npm run dev #or yarn dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<br/>
+<br/>
+<br/>
